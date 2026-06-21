@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | United Elite Group</title>
+  <meta name="description" content="Full-service luxury renovation: construction, kitchen, bathroom, townhouse, basement, custom millwork, and more — NYC's premier residential contractor." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    body { padding-top: var(--nav-h); }
+
+    /* Page hero */
+    .page-hero { position:relative; height:55vh; min-height:360px; overflow:hidden; }
+    .page-hero img { width:100%; height:100%; object-fit:cover; object-position:center 30%; }
+    .page-hero-overlay { position:absolute; inset:0; background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.55)); }
+    .page-hero-content {
+      position:absolute; inset:0;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      padding:clamp(2rem,5vw,4rem) var(--gutter);
+    }
+    .page-hero-content h1 {
+      font-family:var(--serif); font-size:clamp(3rem,8vw,7rem);
+      text-transform:uppercase; letter-spacing:.03em; color:var(--white); line-height:1;
+    }
+    .page-hero-content p { font-size:.8125rem; color:rgba(255,255,255,.7); letter-spacing:.1em; margin-top:1rem; }
+
+    /* Intro */
+    .services-intro-section { padding-block:clamp(4rem,8vw,8rem); }
+    .services-intro-inner {
+      display:grid; grid-template-columns:1fr 1fr; gap:clamp(3rem,6vw,8rem); align-items:center;
+    }
+    .services-intro-inner h2 {
+      font-family:var(--serif); font-size:clamp(2.2rem,4.5vw,4.5rem);
+      text-transform:uppercase; letter-spacing:.02em; line-height:1.05; margin-bottom:1.5rem;
+    }
+    .services-intro-inner p { font-size:.875rem; color:var(--text-muted); line-height:1.9; margin-bottom:1.25rem; }
+    .services-intro-img { aspect-ratio:4/3; overflow:hidden; }
+    .services-intro-img img { width:100%; height:100%; object-fit:cover; }
+
+    /* Category section */
+    .service-category { padding-block:clamp(4rem,7vw,7rem); }
+    .service-category:nth-child(even) { background:var(--bg-alt); }
+
+    .category-header { margin-bottom:clamp(2.5rem,4vw,4rem); }
+    .category-header h2 {
+      font-family:var(--serif); font-size:clamp(2rem,3.5vw,3.5rem);
+      text-transform:uppercase; letter-spacing:.02em; line-height:1.05;
+    }
+    .category-header p { font-size:.875rem; color:var(--text-muted); line-height:1.8; margin-top:.75rem; max-width:560px; }
+
+    .services-list {
+      display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;
+    }
+    .service-item {
+      padding:2rem;
+      background:var(--bg);
+      border-left:2px solid transparent;
+      transition:border-color var(--fast);
+    }
+    .service-category:nth-child(even) .service-item { background:var(--bg); }
+    .service-item:hover { border-color:var(--text); }
+    .service-item h3 {
+      font-family:var(--sans); font-size:.75rem; font-weight:600;
+      letter-spacing:.15em; text-transform:uppercase; margin-bottom:.75rem;
+    }
+    .service-item p { font-size:.8125rem; color:var(--text-muted); line-height:1.75; }
+
+    /* Featured services with images */
+    .featured-services { padding-block:clamp(4rem,8vw,8rem); }
+    .featured-services-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; }
+    .featured-service-card {
+      position:relative; overflow:hidden;
+      aspect-ratio:2/3;
+    }
+    .featured-service-card img {
+      width:100%; height:100%;
+      object-fit:cover;
+      transition:transform .8s var(--ease);
+    }
+    .featured-service-card:hover img { transform:scale(1.05); }
+    .featured-service-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 60%);
+    }
+    .featured-service-content {
+      position:absolute; inset:0;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      padding:2rem;
+      color:var(--white);
+    }
+    .featured-service-tag {
+      font-family:var(--sans); font-size:.5rem; font-weight:600;
+      letter-spacing:.22em; text-transform:uppercase;
+      color:rgba(255,255,255,.65); margin-bottom:.6rem;
+    }
+    .featured-service-name {
+      font-family:var(--serif); font-size:1.8rem;
+      text-transform:uppercase; letter-spacing:.03em; line-height:1; margin-bottom:.75rem;
+    }
+    .featured-service-link {
+      font-family:var(--sans); font-size:.5625rem; font-weight:600;
+      letter-spacing:.15em; text-transform:uppercase;
+      color:rgba(255,255,255,.8);
+      border-bottom:1px solid rgba(255,255,255,.4);
+      padding-bottom:2px;
+      display:inline-block;
+      transition:color var(--fast), border-color var(--fast);
+    }
+    .featured-service-card:hover .featured-service-link { color:var(--white); border-color:var(--white); }
+
+    /* Why us */
+    .why-us { padding-block:clamp(4rem,8vw,8rem); background:var(--text); color:var(--white); }
+    .why-us-inner { display:grid; grid-template-columns:1fr 1fr; gap:clamp(3rem,6vw,8rem); align-items:start; }
+    .why-us h2 {
+      font-family:var(--serif); font-size:clamp(2rem,4vw,3.8rem);
+      text-transform:uppercase; letter-spacing:.02em; line-height:1.05; margin-bottom:1.5rem;
+    }
+    .why-us p { font-size:.875rem; color:rgba(255,255,255,.65); line-height:1.85; margin-bottom:1.25rem; }
+    .why-list { display:flex; flex-direction:column; gap:2px; }
+    .why-item {
+      padding:1.5rem;
+      background:rgba(255,255,255,.05);
+      border-left:2px solid rgba(255,255,255,.15);
+    }
+    .why-item h3 {
+      font-family:var(--sans); font-size:.6875rem; font-weight:600;
+      letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.9);
+      margin-bottom:.5rem;
+    }
+    .why-item p { font-size:.8125rem; color:rgba(255,255,255,.55); line-height:1.75; }
+
+    /* Responsive */
+    @media (max-width:1024px) {
+      .services-list { grid-template-columns:1fr 1fr; }
+      .featured-services-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:768px) {
+      .services-intro-inner { grid-template-columns:1fr; }
+      .services-list { grid-template-columns:1fr; }
+      .featured-services-grid { grid-template-columns:1fr 1fr; }
+      .why-us-inner { grid-template-columns:1fr; }
+    }
+    @media (max-width:480px) {
+      .featured-services-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="nav-logo-text"><span>UNITED ELITE</span><span class="logo-sub">GROUP</span></div>
+      </a>
+      <nav class="nav-links">
+        <a href="about-us.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="partnership.html">Partnership</a>
+      </nav>
+      <a href="index.html#contact" class="nav-contact"><span class="nav-dot"></span>Contact Us</a>
+      <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <nav class="nav-mobile-drawer">
+    <a href="about-us.html">About</a><a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a><a href="blog.html">Blog</a>
+    <a href="partnership.html">Partnership</a><a href="index.html#contact">Contact Us</a>
+  </nav>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&auto=format&fit=crop&q=80" alt="Luxury kitchen renovation" loading="eager" />
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content container">
+        <h1>Services</h1>
+        <p>Complete luxury renovation capabilities — under one roof</p>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="services-intro-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">What We Do</span>
+          <span class="t-label" style="color:var(--border)">01</span>
+        </div>
+        <div class="services-intro-inner">
+          <div class="reveal">
+            <h2>Full-Service Luxury Renovation</h2>
+            <p>From initial design consultation through the final walkthrough, United Elite Group delivers every aspect of your renovation in-house. No subcontractor roulette — just one experienced, accountable team managing your project from end to end.</p>
+            <p>We specialize in the full spectrum of high-end residential construction: gut renovations, targeted room remodels, landmark restorations, and everything in between — all with the attention to detail that luxury renovation demands.</p>
+            <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap">
+              <a href="index.html#contact" class="btn btn-fill">Get a Free Estimate</a>
+              <a href="portfolio.html" class="btn">See Our Work</a>
+            </div>
+          </div>
+          <div class="services-intro-img reveal">
+            <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=900&auto=format&fit=crop&q=80" alt="Luxury NYC renovation" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED SERVICES WITH IMAGES -->
+    <section class="featured-services">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Core Services</span>
+          <span class="t-label" style="color:var(--border)">02</span>
+        </div>
+        <div class="featured-services-grid">
+          <a class="featured-service-card reveal" href="index.html#contact">
+            <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?w=800&auto=format&fit=crop&q=80" alt="Townhouse renovation" loading="lazy" />
+            <div class="featured-service-overlay"></div>
+            <div class="featured-service-content">
+              <span class="featured-service-tag">Renovation</span>
+              <div class="featured-service-name">Full Townhouse</div>
+              <span class="featured-service-link">Learn More</span>
+            </div>
+          </a>
+          <a class="featured-service-card reveal" href="index.html#contact">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80" alt="Kitchen renovation" loading="lazy" />
+            <div class="featured-service-overlay"></div>
+            <div class="featured-service-content">
+              <span class="featured-service-tag">Renovation</span>
+              <div class="featured-service-name">Kitchen</div>
+              <span class="featured-service-link">Learn More</span>
+            </div>
+          </a>
+          <a class="featured-service-card reveal" href="index.html#contact">
+            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&auto=format&fit=crop&q=80" alt="Bathroom renovation" loading="lazy" />
+            <div class="featured-service-overlay"></div>
+            <div class="featured-service-content">
+              <span class="featured-service-tag">Renovation</span>
+              <div class="featured-service-name">Bathroom</div>
+              <span class="featured-service-link">Learn More</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- RENOVATION SERVICES -->
+    <section class="service-category">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Renovation</span>
+          <span class="t-label" style="color:var(--border)">03</span>
+        </div>
+        <div class="category-header reveal">
+          <h2>Renovation Services</h2>
+          <p>From full gut renovations to targeted room transformations — every project receives the same uncompromising attention to quality and detail.</p>
+        </div>
+        <div class="services-list">
+          <div class="service-item reveal">
+            <h3>Full Gut Renovation</h3>
+            <p>Comprehensive top-to-bottom interior overhaul, from demolition through all trades, custom finishes, and final inspections. We manage it all.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Kitchen Renovation</h3>
+            <p>Custom kitchen design and construction — bespoke cabinetry, stone countertops, premium appliances, plumbing, and electrical from a single team.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Bathroom Renovation</h3>
+            <p>Spa-inspired transformations — heated floors, steam showers, wet rooms, handcrafted tile work, and fixtures sourced from the finest suppliers.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Full Townhouse</h3>
+            <p>Multi-floor townhouse renovations managed as a single project — from basement to rooftop, with precise sequencing across all trades.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Basement Renovation</h3>
+            <p>Below-grade transformations: waterproofing, egress windows, mechanical systems, and full residential fit-out to create genuinely livable space.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Exterior Terrace Design</h3>
+            <p>Rooftop and terrace build-outs — structural waterproofing, composite or hardwood decking, planters, drainage, and outdoor kitchen integration.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSTRUCTION SERVICES -->
+    <section class="service-category">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Construction</span>
+          <span class="t-label" style="color:var(--border)">04</span>
+        </div>
+        <div class="category-header reveal">
+          <h2>Construction Services</h2>
+          <p>All trades performed in-house by our licensed, vetted specialists — no subcontractor handoffs, no accountability gaps.</p>
+        </div>
+        <div class="services-list">
+          <div class="service-item reveal">
+            <h3>Custom Millwork</h3>
+            <p>Built-ins, cabinetry, wall paneling, coffered ceilings, and custom furniture — designed and fabricated to your exact specifications.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Plumbing</h3>
+            <p>Complete residential plumbing: supply, drain, waste, vent, fixture installation, water heater, radiant floor, and steam systems.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Electrical</h3>
+            <p>Full electrical systems — service upgrades, panel work, lighting circuits, smart home integration, EV charging, and low-voltage systems.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Flooring</h3>
+            <p>Installation and refinishing of wide-plank hardwood, engineered wood, marble, stone, and large-format tile — including radiant-heat systems.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Drywall &amp; Plaster</h3>
+            <p>Smooth-finish drywall, Level 5 finish, ornamental plasterwork, curved walls, and restoration of historic plaster detail in landmark buildings.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Painting</h3>
+            <p>Interior finish painting with premium materials — walls, ceilings, trim, millwork — with meticulous surface preparation and clean results.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Structural</h3>
+            <p>Load-bearing wall removal, beam installation, floor joist work, and structural reinforcement — fully engineered and DOB-permitted.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN SERVICES -->
+    <section class="service-category">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Design &amp; Planning</span>
+          <span class="t-label" style="color:var(--border)">05</span>
+        </div>
+        <div class="category-header reveal">
+          <h2>Design &amp; Planning</h2>
+          <p>We offer pre-construction design support to ensure every decision is made with the end result — and the budget — in mind.</p>
+        </div>
+        <div class="services-list" style="grid-template-columns:1fr 1fr">
+          <div class="service-item reveal">
+            <h3>Project Planning</h3>
+            <p>Comprehensive scope development, scheduling, budget alignment, and pre-construction coordination with your architect, designer, and building management. We set the project up for success before demolition begins.</p>
+          </div>
+          <div class="service-item reveal">
+            <h3>Design Consultation</h3>
+            <p>Material selection guidance, space planning review, fixture and finish sourcing, and aesthetic direction from our senior design team — ensuring your vision is buildable, beautiful, and on-budget.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="why-us">
+      <div class="container">
+        <div class="why-us-inner">
+          <div class="reveal">
+            <h2>Why United Elite Group?</h2>
+            <p>Over 13 years, we've refined our approach into something that works — for clients, designers, and architects. Here's what sets us apart.</p>
+            <div style="margin-top:2rem">
+              <a href="index.html#contact" class="btn btn-white">Start a Project</a>
+            </div>
+          </div>
+          <div class="why-list reveal">
+            <div class="why-item">
+              <h3>Single Point of Accountability</h3>
+              <p>One project manager. One team. One contract. No blame-shifting between subs — we own the entire project.</p>
+            </div>
+            <div class="why-item">
+              <h3>NYC-Specific Expertise</h3>
+              <p>13 years of co-op alteration agreements, DOB filings, landmark approvals, and building management relationships — we know NYC renovation from the inside.</p>
+            </div>
+            <div class="why-item">
+              <h3>Premium Material Access</h3>
+              <p>Trade-only pricing and access to the best stone yards, millwork shops, and tile showrooms in New York — passed directly to our clients.</p>
+            </div>
+            <div class="why-item">
+              <h3>Design Fidelity</h3>
+              <p>We build what you designed — precisely. Our team is fluent in architectural drawings and specifications, and we hold ourselves to the letter of every detail.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="padding-block:clamp(4rem,7vw,7rem); text-align:center;">
+      <div class="container">
+        <h2 class="t-headline reveal" style="max-width:520px; margin-inline:auto; margin-bottom:1.25rem">Ready to Get Started?</h2>
+        <p class="reveal" style="color:var(--text-muted); font-size:.875rem; max-width:440px; margin-inline:auto; margin-bottom:2rem">
+          Schedule your free consultation and get a detailed scope and budget estimate — no obligation.
+        </p>
+        <a href="index.html#contact" class="btn btn-fill reveal">Free Consultation</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            <div class="nav-logo-text"><span>UNITED ELITE</span><span class="logo-sub">GROUP</span></div>
+          </div>
+          <p class="footer-tagline">New York City's premier luxury renovation contractor and construction manager since 2012.</p>
+          <div class="footer-social"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Houzz</a></div>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <nav class="footer-nav">
+            <a href="about-us.html">About Us</a><a href="portfolio.html">Portfolio</a>
+            <a href="services.html">Services</a><a href="blog.html">Blog</a>
+            <a href="partnership.html">Partnership</a><a href="index.html#contact">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <nav class="footer-nav">
+            <a href="services.html">Full Gut Renovation</a><a href="services.html">Kitchen Renovation</a>
+            <a href="services.html">Bathroom Renovation</a><a href="services.html">Townhouse Renovation</a>
+            <a href="services.html">Basement Renovation</a><a href="services.html">Custom Millwork</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-contact">
+            <p><a href="tel:+17184391222">+1 (718) 439-1222</a></p>
+            <p>555 Madison Ave<br>New York, NY 10022</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 United Elite Group. All rights reserved.</p>
+        <p class="footer-copy">NYC General Contractor License #2005693</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
