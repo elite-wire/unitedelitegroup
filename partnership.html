@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partnership | United Elite Group</title>
+  <meta name="description" content="Partner with United Elite Group as your trusted NYC renovation execution partner. We work as an extension of your team — for architects, interior designers, and developers." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    body { padding-top: var(--nav-h); }
+
+    /* Page hero — full height */
+    .partner-hero {
+      position:relative;
+      height:80vh; min-height:540px;
+      overflow:hidden;
+      display:flex; align-items:flex-end;
+    }
+    .partner-hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
+    .partner-hero-overlay { position:absolute; inset:0; background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.65) 100%); }
+    .partner-hero-content {
+      position:relative; z-index:2;
+      padding:clamp(3rem,6vw,6rem) var(--gutter);
+      width:100%;
+      max-width:var(--max-w); margin-inline:auto;
+    }
+    .partner-hero-content h1 {
+      font-family:var(--serif); font-size:clamp(3.5rem,9vw,9rem);
+      text-transform:uppercase; letter-spacing:.02em;
+      color:var(--white); line-height:.95; margin-bottom:1.5rem;
+    }
+    .partner-hero-content p {
+      font-family:var(--sans); font-size:.875rem;
+      color:rgba(255,255,255,.75); letter-spacing:.08em;
+      max-width:560px; line-height:1.8;
+      margin-bottom:2.5rem;
+    }
+    .partner-hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+
+    /* Partner intro */
+    .partner-intro { padding-block:clamp(5rem,9vw,9rem); }
+    .partner-intro-inner {
+      display:grid; grid-template-columns:1fr 1fr; gap:clamp(3rem,6vw,8rem); align-items:center;
+    }
+    .partner-intro-text h2 {
+      font-family:var(--serif); font-size:clamp(2.2rem,4.5vw,4.5rem);
+      text-transform:uppercase; letter-spacing:.02em; line-height:1.05; margin-bottom:1.5rem;
+    }
+    .partner-intro-text p { font-size:.875rem; color:var(--text-muted); line-height:1.9; margin-bottom:1.25rem; }
+    .partner-intro-img { aspect-ratio:4/5; overflow:hidden; position:relative; }
+    .partner-intro-img img { width:100%; height:100%; object-fit:cover; }
+
+    /* Stats */
+    .partner-stats {
+      background:var(--text); color:var(--white);
+      padding-block:clamp(3rem,5vw,5rem);
+    }
+    .partner-stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; text-align:center; }
+    .partner-stat-num { font-family:var(--serif); font-size:clamp(2.5rem,5vw,4.5rem); font-weight:300; line-height:1; margin-bottom:.5rem; }
+    .partner-stat-label { font-family:var(--sans); font-size:.5625rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.5); }
+
+    /* Who we work with */
+    .who-section { padding-block:clamp(5rem,9vw,9rem); background:var(--bg-alt); }
+    .who-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:clamp(2.5rem,4vw,4rem); }
+    .who-card {
+      padding:2.5rem; background:var(--bg);
+      border-top:2px solid transparent;
+      transition:border-color var(--fast);
+    }
+    .who-card:hover { border-color:var(--text); }
+    .who-card-icon {
+      font-family:var(--serif); font-size:3rem; font-weight:300;
+      color:var(--border); line-height:1; margin-bottom:1.5rem;
+    }
+    .who-card h3 { font-family:var(--sans); font-size:.8125rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.75rem; }
+    .who-card p { font-size:.8125rem; color:var(--text-muted); line-height:1.75; }
+
+    /* Process for partners */
+    .partner-process { padding-block:clamp(5rem,9vw,9rem); }
+    .partner-process-steps {
+      display:grid; grid-template-columns:repeat(7,1fr);
+      gap:2px; margin-top:clamp(2.5rem,4vw,4rem);
+    }
+    .partner-step { padding:2rem 1.5rem; background:var(--bg-alt); }
+    .partner-step-num {
+      font-family:var(--serif); font-size:2rem; font-weight:300; color:var(--border);
+      line-height:1; margin-bottom:1rem;
+    }
+    .partner-step h3 { font-family:var(--sans); font-size:.625rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.6rem; line-height:1.4; }
+    .partner-step p { font-size:.75rem; color:var(--text-muted); line-height:1.65; }
+
+    /* Services for partners */
+    .partner-services { padding-block:clamp(5rem,9vw,9rem); background:var(--bg-alt); }
+    .partner-services-inner {
+      display:grid; grid-template-columns:1fr 1.5fr; gap:clamp(3rem,6vw,8rem); align-items:start;
+    }
+    .partner-services-left h2 {
+      font-family:var(--serif); font-size:clamp(2rem,4vw,3.5rem);
+      text-transform:uppercase; letter-spacing:.02em; line-height:1.05; margin-bottom:1.25rem;
+    }
+    .partner-services-left p { font-size:.875rem; color:var(--text-muted); line-height:1.8; margin-bottom:2rem; }
+    .partner-services-cols { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; }
+    .partner-service-group h3 { font-family:var(--sans); font-size:.5625rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--text-muted); margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:.5rem; }
+    .partner-service-group ul { display:flex; flex-direction:column; gap:.5rem; }
+    .partner-service-group li { font-size:.8125rem; color:var(--text); }
+
+    /* Testimonials for partners */
+    .partner-reviews { padding-block:clamp(5rem,9vw,9rem); }
+    .partner-reviews-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; margin-top:clamp(2.5rem,4vw,4rem); }
+    .partner-review-card { padding:2rem; background:var(--bg-alt); }
+    .partner-review-quote {
+      font-family:var(--serif); font-size:1.1rem; font-style:italic; font-weight:300;
+      line-height:1.65; color:var(--text); margin-bottom:1.5rem;
+    }
+    .partner-review-author { font-family:var(--sans); font-size:.5625rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase; }
+    .partner-review-role { font-family:var(--sans); font-size:.5625rem; color:var(--text-muted); letter-spacing:.08em; margin-top:.2rem; }
+
+    /* Awards */
+    .partner-awards { padding-block:clamp(3rem,5vw,5rem); background:var(--bg-alt); }
+    .partner-awards-inner { display:flex; align-items:center; gap:clamp(2rem,4vw,5rem); flex-wrap:wrap; }
+    .partner-awards-text { flex:1; min-width:240px; }
+    .partner-awards-text h2 { font-family:var(--serif); font-size:clamp(1.6rem,3vw,2.6rem); text-transform:uppercase; letter-spacing:.02em; margin-bottom:1rem; }
+    .partner-awards-text p { font-size:.875rem; color:var(--text-muted); line-height:1.8; }
+    .partner-awards-badges { display:flex; flex-wrap:wrap; gap:.75rem; }
+    .award-pill { background:var(--bg); border:1px solid var(--border); padding:.75rem 1.25rem; display:flex; flex-direction:column; align-items:center; }
+    .award-pill .pill-year { font-family:var(--serif); font-size:1.4rem; font-weight:500; line-height:1; }
+    .award-pill .pill-text { font-family:var(--sans); font-size:.45rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin-top:.25rem; text-align:center; }
+
+    /* Contact / reach out */
+    .partner-contact { padding-block:clamp(5rem,9vw,9rem); }
+    .partner-contact-inner { display:grid; grid-template-columns:1fr 1.5fr; gap:clamp(3rem,6vw,8rem); align-items:start; }
+    .partner-contact-left h2 { font-family:var(--serif); font-size:clamp(2rem,4vw,3.5rem); text-transform:uppercase; letter-spacing:.02em; line-height:1.05; margin-bottom:1.25rem; }
+    .partner-contact-left p { font-size:.875rem; color:var(--text-muted); line-height:1.8; margin-bottom:2rem; }
+    .partner-contact-details { display:flex; flex-direction:column; gap:1rem; }
+    .contact-detail-label { font-family:var(--sans); font-size:.5625rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--text-muted); display:block; margin-bottom:.25rem; }
+    .contact-detail-value { font-size:.875rem; color:var(--text); }
+
+    /* Responsive */
+    @media (max-width:1024px) {
+      .partner-stats-grid { grid-template-columns:1fr 1fr; }
+      .who-grid { grid-template-columns:1fr 1fr; }
+      .partner-process-steps { grid-template-columns:repeat(4,1fr); }
+      .partner-services-cols { grid-template-columns:1fr 1fr; }
+      .partner-reviews-grid { grid-template-columns:1fr 1fr; }
+      .partner-services-inner { grid-template-columns:1fr; }
+    }
+    @media (max-width:768px) {
+      .partner-intro-inner { grid-template-columns:1fr; }
+      .who-grid { grid-template-columns:1fr; }
+      .partner-process-steps { grid-template-columns:1fr 1fr; }
+      .partner-reviews-grid { grid-template-columns:1fr; }
+      .partner-contact-inner { grid-template-columns:1fr; }
+      .partner-services-cols { grid-template-columns:1fr; }
+    }
+    @media (max-width:480px) {
+      .partner-process-steps { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="nav-logo-text"><span>UNITED ELITE</span><span class="logo-sub">GROUP</span></div>
+      </a>
+      <nav class="nav-links">
+        <a href="about-us.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="partnership.html" class="active">Partnership</a>
+      </nav>
+      <a href="#partner-contact" class="nav-contact"><span class="nav-dot"></span>Contact Us</a>
+      <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <nav class="nav-mobile-drawer">
+    <a href="about-us.html">About</a><a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a><a href="blog.html">Blog</a>
+    <a href="partnership.html">Partnership</a><a href="#partner-contact">Contact Us</a>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="partner-hero">
+      <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&auto=format&fit=crop&q=80" alt="Luxury renovated interior — partnership" loading="eager" />
+      <div class="partner-hero-overlay"></div>
+      <div class="partner-hero-content">
+        <h1>Be Our<br>Partner</h1>
+        <p>We work as an extension of your team — bringing precision execution, uncompromising quality, and deep NYC expertise to every project you entrust to us.</p>
+        <div class="partner-hero-btns">
+          <a href="#partner-contact" class="btn btn-white">Start a Partnership</a>
+          <a href="portfolio.html" class="btn btn-white" style="background:transparent">View Our Portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="partner-intro">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">About the Partnership</span>
+          <span class="t-label" style="color:var(--border)">01</span>
+        </div>
+        <div class="partner-intro-inner">
+          <div class="partner-intro-text reveal">
+            <h2>Your Vision, Our Execution</h2>
+            <p>For architects and interior designers working in New York City, the difference between an extraordinary project and a disappointing one often comes down to the contractor. We built United Elite Group to be that contractor — reliable, skilled, and fully aligned with your design intent.</p>
+            <p>We don't just build to spec. We read drawings carefully, ask the right questions early, flag constructability issues before they become change orders, and execute with the level of craft your clients expect and deserve.</p>
+            <p>Whether you're an independent designer with one project, a firm with ongoing work, or an architect managing a complex landmark restoration — we are the execution partner you've been looking for.</p>
+            <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap">
+              <a href="#partner-contact" class="btn btn-fill">Get in Touch</a>
+              <a href="portfolio.html" class="btn">See Our Work</a>
+            </div>
+          </div>
+          <div class="partner-intro-img reveal">
+            <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?w=900&auto=format&fit=crop&q=80" alt="Luxury partnership project" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="partner-stats">
+      <div class="container">
+        <div class="partner-stats-grid">
+          <div class="reveal">
+            <div class="partner-stat-num">150<span style="font-size:.6em">+</span></div>
+            <div class="partner-stat-label">Projects Released</div>
+          </div>
+          <div class="reveal">
+            <div class="partner-stat-num">13</div>
+            <div class="partner-stat-label">Years of Experience</div>
+          </div>
+          <div class="reveal">
+            <div class="partner-stat-num">42</div>
+            <div class="partner-stat-label">High-End Specialists</div>
+          </div>
+          <div class="reveal">
+            <div class="partner-stat-num">7<span style="font-size:.6em">+</span></div>
+            <div class="partner-stat-label">Houzz Awards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHO WE WORK WITH -->
+    <section class="who-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Who We Work With</span>
+          <span class="t-label" style="color:var(--text-muted)">02</span>
+        </div>
+        <h2 class="t-headline reveal" style="max-width:540px">Built for Design &amp; Architecture Professionals</h2>
+        <div class="who-grid">
+          <div class="who-card reveal">
+            <div class="who-card-icon">A</div>
+            <h3>Architects</h3>
+            <p>We execute your construction drawings with precision — structural modifications, complex assemblies, landmark compliance, and DOB management all included. Your vision, built exactly right.</p>
+          </div>
+          <div class="who-card reveal">
+            <div class="who-card-icon">I</div>
+            <h3>Interior Designers</h3>
+            <p>We understand specifications, custom millwork drawings, material samples, and the nuanced expectations of high-end interior design. We're the builder who actually reads your finish schedule.</p>
+          </div>
+          <div class="who-card reveal">
+            <div class="who-card-icon">D</div>
+            <h3>Developers</h3>
+            <p>Investor-grade residential work delivered on schedule and within budget. We bring cost transparency, trade sequencing expertise, and a track record of on-time, on-spec delivery.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS FOR PARTNERS -->
+    <section class="partner-process">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">How We Partner</span>
+          <span class="t-label" style="color:var(--border)">03</span>
+        </div>
+        <h2 class="t-headline reveal" style="max-width:560px; margin-bottom:clamp(2.5rem,4vw,4rem)">Partners from the Very Beginning</h2>
+        <div class="partner-process-steps">
+          <div class="partner-step reveal">
+            <div class="partner-step-num">01</div>
+            <h3>Collaborative Project Planning</h3>
+            <p>We join the design process early — reviewing drawings, flagging issues, and contributing constructability feedback before a nail is driven.</p>
+          </div>
+          <div class="partner-step reveal">
+            <div class="partner-step-num">02</div>
+            <h3>Budgeting &amp; Feasibility</h3>
+            <p>Detailed cost estimates that align with your client's expectations — broken down by trade, with clear line-item transparency and value-engineering options.</p>
+          </div>
+          <div class="partner-step reveal">
+            <div class="partner-step-num">03</div>
+            <h3>Permit &amp; Regulatory Compliance</h3>
+            <p>All DOB filings, co-op alteration agreements, and landmark approvals handled in-house — protecting your timeline and client relationship.</p>
+          </div>
+          <div class="partner-step reveal">
+            <div class="partner-step-num">04</div>
+            <h3>Precision Craftsmanship</h3>
+            <p>Our team of licensed specialists executes to the exact standard your design requires — no cutting corners, no substitutions without approval.</p>
+          </div>
+          <div class="partner-step reveal">
+            <div class="partner-step-num">05</div>
+            <h3>Seamless Coordination</h3>
+            <p>A dedicated project manager keeps you informed daily. Site visits are always welcome — we build open-door partnerships, not black-box construction.</p>
+          </div>
+          <div class="partner-step reveal">
+            <div class="partner-step-num">06</div>
+            <h3>White-Glove Finishing</h3>
+            <p>The final 5% is where most contractors lose the thread. We obsess over punch lists, protect your finishes, and deliver a home that matches your renders.</p>
+          </div>
+          <div class="partner-step reveal">
+            <div class="partner-step-num">07</div>
+            <h3>Ongoing Support</h3>
+            <p>We remain available post-completion for maintenance, follow-up work, and future projects — we're building long-term relationships, not one-off transactions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES FOR PARTNERS -->
+    <section class="partner-services">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Services Available</span>
+          <span class="t-label" style="color:var(--text-muted)">04</span>
+        </div>
+        <div class="partner-services-inner">
+          <div class="reveal">
+            <h2>Complete Renovation Capabilities</h2>
+            <p>Everything your project needs, performed by our in-house licensed specialists — no subcontractor hand-offs, no accountability gaps.</p>
+            <a href="services.html" class="btn" style="margin-top:2rem">View All Services</a>
+          </div>
+          <div class="partner-services-cols reveal">
+            <div class="partner-service-group">
+              <h3>Construction</h3>
+              <ul>
+                <li>Plumbing</li>
+                <li>Electrical</li>
+                <li>Custom Millwork</li>
+                <li>Flooring</li>
+                <li>Drywall &amp; Plaster</li>
+                <li>Painting</li>
+                <li>Structural</li>
+              </ul>
+            </div>
+            <div class="partner-service-group">
+              <h3>Renovation</h3>
+              <ul>
+                <li>Full Gut Renovation</li>
+                <li>Kitchen Renovation</li>
+                <li>Bathroom Renovation</li>
+                <li>Full Townhouse</li>
+                <li>Basement Renovation</li>
+                <li>Exterior Terrace</li>
+              </ul>
+            </div>
+            <div class="partner-service-group">
+              <h3>Design &amp; Planning</h3>
+              <ul>
+                <li>Project Planning</li>
+                <li>Design Consultation</li>
+                <li>Material Sourcing</li>
+                <li>DOB Filing</li>
+                <li>Permit Management</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECTED PORTFOLIO PREVIEW -->
+    <section style="padding-block:clamp(5rem,9vw,9rem);">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Selected Projects</span>
+          <span class="t-label" style="color:var(--border)">05</span>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-bottom:2.5rem">
+          <a href="portfolio.html" style="display:block; aspect-ratio:3/4; overflow:hidden; text-decoration:none; position:relative">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&auto=format&fit=crop&q=80" alt="Avenue B" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+          </a>
+          <a href="portfolio.html" style="display:block; aspect-ratio:3/4; overflow:hidden; text-decoration:none;">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&auto=format&fit=crop&q=80" alt="West Chelsea Residence" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+          </a>
+          <a href="portfolio.html" style="display:block; aspect-ratio:3/4; overflow:hidden; text-decoration:none;">
+            <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?w=700&auto=format&fit=crop&q=80" alt="Pearce Residence" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+          </a>
+        </div>
+        <div style="text-align:center"><a href="portfolio.html" class="btn">View Full Portfolio</a></div>
+      </div>
+    </section>
+
+    <!-- PARTNER REVIEWS -->
+    <section class="partner-reviews" style="background:var(--bg-alt)">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Partner Testimonials</span>
+          <span class="t-label" style="color:var(--text-muted)">06</span>
+        </div>
+        <div class="partner-reviews-grid">
+          <div class="partner-review-card reveal">
+            <p class="partner-review-quote">"As an interior designer, I rely on contractors who can execute complex designs flawlessly. United Elite Group is that rare partner — they understand the nuance behind every specification and deliver with true precision."</p>
+            <div class="partner-review-author">Alexandra Chen</div>
+            <div class="partner-review-role">Interior Designer · 2024</div>
+          </div>
+          <div class="partner-review-card reveal">
+            <p class="partner-review-quote">"I've worked with many contractors in NYC over 20 years as an architect. United Elite Group stands apart for their professionalism, their understanding of landmark building requirements, and their exceptional finish quality."</p>
+            <div class="partner-review-author">Michael Rothstein, AIA</div>
+            <div class="partner-review-role">Architect · 2024</div>
+          </div>
+          <div class="partner-review-card reveal">
+            <p class="partner-review-quote">"They read our drawings, they ask the right questions, and they build exactly what we designed. For our firm, that is exceptional and rare. We've made them our go-to contractor for all NYC residential work."</p>
+            <div class="partner-review-author">Daniela Rossi</div>
+            <div class="partner-review-role">Principal, Rossi Architecture Studio · 2025</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section class="partner-awards">
+      <div class="container">
+        <div class="partner-awards-inner">
+          <div class="partner-awards-text reveal">
+            <h2>Industry Recognition</h2>
+            <p>Multiple Best of Houzz awards for Service Excellence, CRAN Network membership, and a track record that speaks for itself.</p>
+          </div>
+          <div class="partner-awards-badges reveal">
+            <div class="award-pill"><span class="pill-year">2022</span><span class="pill-text">Best of Houzz<br>Service</span></div>
+            <div class="award-pill"><span class="pill-year">2021</span><span class="pill-text">Best of Houzz<br>Service</span></div>
+            <div class="award-pill"><span class="pill-year">2020</span><span class="pill-text">Best of Houzz<br>Service</span></div>
+            <div class="award-pill"><span class="pill-year">2019</span><span class="pill-text">Best of Houzz<br>Service</span></div>
+            <div class="award-pill"><span class="pill-year">2018</span><span class="pill-text">Best of Houzz<br>Service</span></div>
+            <div class="award-pill"><span class="pill-year">2016</span><span class="pill-text">Best of Houzz<br>Design</span></div>
+            <div class="award-pill"><span class="pill-year">2014</span><span class="pill-text">Best of Houzz<br>Design</span></div>
+            <div class="award-pill" style="background:var(--text);color:var(--white);border-color:var(--text)">
+              <span class="pill-year" style="font-size:1rem;letter-spacing:.05em">CRAN</span>
+              <span class="pill-text" style="color:rgba(255,255,255,.6)">Network<br>Member</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / REACH OUT -->
+    <section class="partner-contact" id="partner-contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Reach Out</span>
+        </div>
+        <div class="partner-contact-inner">
+          <div class="reveal">
+            <h2>Let's Start a Partnership</h2>
+            <p>Tell us about your next project and how you'd like to collaborate. We'll respond within 24 hours to schedule an introductory call.</p>
+            <div class="partner-contact-details">
+              <div>
+                <span class="contact-detail-label">Phone</span>
+                <a href="tel:+17184391222" class="contact-detail-value">+1 (718) 439-1222</a>
+              </div>
+              <div>
+                <span class="contact-detail-label">Address</span>
+                <span class="contact-detail-value">555 Madison Ave<br>New York, NY 10022</span>
+              </div>
+              <div>
+                <span class="contact-detail-label">Hours</span>
+                <span class="contact-detail-value">Mon – Fri, 9am – 6pm</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="reveal" action="#" method="post" novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="p-name">Name</label>
+                <input type="text" id="p-name" name="name" placeholder="Your full name" required />
+              </div>
+              <div class="form-field">
+                <label for="p-company">Company / Firm</label>
+                <input type="text" id="p-company" name="company" placeholder="Your firm or company" />
+              </div>
+              <div class="form-field">
+                <label for="p-email">Email</label>
+                <input type="email" id="p-email" name="email" placeholder="you@yourfirm.com" required />
+              </div>
+              <div class="form-field">
+                <label for="p-phone">Phone</label>
+                <input type="tel" id="p-phone" name="phone" placeholder="+1 (___) ___-____" />
+              </div>
+              <div class="form-field">
+                <label for="p-role">Your Role</label>
+                <select id="p-role" name="role">
+                  <option value="">Select your role</option>
+                  <option>Architect</option>
+                  <option>Interior Designer</option>
+                  <option>Developer</option>
+                  <option>Real Estate Professional</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="p-project-type">Project Type</label>
+                <select id="p-project-type" name="project-type">
+                  <option value="">Select a type</option>
+                  <option>Full-Home Renovation</option>
+                  <option>Kitchen Renovation</option>
+                  <option>Bathroom Renovation</option>
+                  <option>Townhouse Renovation</option>
+                  <option>New Construction</option>
+                  <option>Multiple Projects</option>
+                </select>
+              </div>
+              <div class="form-field span-2">
+                <label for="p-message">Tell Us About Your Project</label>
+                <textarea id="p-message" name="message" placeholder="Describe your project, timeline, location, and how you'd like to work together…"></textarea>
+              </div>
+              <div class="form-field span-2">
+                <label style="display:flex; align-items:center; gap:.75rem; cursor:pointer; font-size:.75rem; color:var(--text-muted); letter-spacing:.05em; text-transform:none;">
+                  <input type="file" style="display:none" id="p-file" name="file" accept=".pdf,.dwg,.jpg,.png" />
+                  <span class="btn" onclick="document.getElementById('p-file').click()" style="cursor:pointer">Attach Files (PDF, DWG)</span>
+                  <span id="p-file-label">Optional — attach drawings or specs</span>
+                </label>
+              </div>
+              <div class="form-field span-2">
+                <button type="submit" class="btn btn-fill">Make an Appointment</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            <div class="nav-logo-text"><span>UNITED ELITE</span><span class="logo-sub">GROUP</span></div>
+          </div>
+          <p class="footer-tagline">New York City's premier luxury renovation contractor and construction manager since 2012.</p>
+          <div class="footer-social"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Houzz</a></div>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <nav class="footer-nav">
+            <a href="about-us.html">About Us</a><a href="portfolio.html">Portfolio</a>
+            <a href="services.html">Services</a><a href="blog.html">Blog</a>
+            <a href="partnership.html">Partnership</a><a href="index.html#contact">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <nav class="footer-nav">
+            <a href="services.html">Full Gut Renovation</a><a href="services.html">Kitchen Renovation</a>
+            <a href="services.html">Bathroom Renovation</a><a href="services.html">Townhouse Renovation</a>
+            <a href="services.html">Basement Renovation</a><a href="services.html">Custom Millwork</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-contact">
+            <p><a href="tel:+17184391222">+1 (718) 439-1222</a></p>
+            <p>555 Madison Ave<br>New York, NY 10022</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 United Elite Group. All rights reserved.</p>
+        <p class="footer-copy">NYC General Contractor License #2005693</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
