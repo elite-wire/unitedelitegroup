@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | United Elite Group</title>
+  <meta name="description" content="Renovation tips, design trends, NYC building regulations, and expert insights from United Elite Group — NYC's luxury renovation contractor." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    body { padding-top: var(--nav-h); }
+
+    /* Page hero */
+    .page-hero { position:relative; height:45vh; min-height:320px; overflow:hidden; }
+    .page-hero img { width:100%; height:100%; object-fit:cover; object-position:center 40%; }
+    .page-hero-overlay { position:absolute; inset:0; background:linear-gradient(to bottom,rgba(0,0,0,.15),rgba(0,0,0,.55)); }
+    .page-hero-content {
+      position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end;
+      padding:clamp(2rem,5vw,4rem) var(--gutter);
+    }
+    .page-hero-content h1 {
+      font-family:var(--serif); font-size:clamp(3rem,8vw,7rem);
+      text-transform:uppercase; letter-spacing:.03em; color:var(--white); line-height:1;
+    }
+    .page-hero-content p { font-size:.8125rem; color:rgba(255,255,255,.7); letter-spacing:.1em; margin-top:1rem; }
+
+    /* Category filter */
+    .blog-filter-bar { padding-block:1.75rem; border-bottom:1px solid var(--border); }
+    .blog-filter-inner { display:flex; gap:2rem; align-items:center; flex-wrap:wrap; }
+    .blog-filter-label { font-family:var(--sans); font-size:.5625rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--text-muted); flex-shrink:0; }
+    .blog-filter-btns { display:flex; gap:.6rem; flex-wrap:wrap; }
+    .blog-filter-btn {
+      font-family:var(--sans); font-size:.5625rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+      padding:.4rem .9rem; border:1px solid var(--border); background:transparent; color:var(--text-muted);
+      cursor:pointer; transition:all var(--fast);
+    }
+    .blog-filter-btn:hover { border-color:var(--text); color:var(--text); }
+    .blog-filter-btn.active { background:var(--text); color:var(--white); border-color:var(--text); }
+
+    /* Blog layout */
+    .blog-section { padding-block:clamp(3rem,6vw,6rem); }
+
+    /* Featured post */
+    .blog-featured {
+      display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,4vw,5rem);
+      align-items:center; margin-bottom:clamp(3rem,5vw,5rem);
+      padding-bottom:clamp(3rem,5vw,5rem); border-bottom:1px solid var(--border);
+    }
+    .blog-featured-img { aspect-ratio:16/10; overflow:hidden; }
+    .blog-featured-img img { width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+    .blog-featured:hover .blog-featured-img img { transform:scale(1.04); }
+    .blog-featured-tag {
+      font-family:var(--sans); font-size:.5625rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+      color:var(--text-muted); margin-bottom:.75rem;
+    }
+    .blog-featured-title {
+      font-family:var(--serif); font-size:clamp(1.8rem,3.5vw,3rem); font-weight:400;
+      letter-spacing:.02em; line-height:1.15; margin-bottom:1rem;
+    }
+    .blog-featured-excerpt { font-size:.875rem; color:var(--text-muted); line-height:1.85; margin-bottom:1.5rem; }
+    .blog-featured-meta { display:flex; align-items:center; gap:1.5rem; }
+    .blog-featured-date { font-family:var(--sans); font-size:.625rem; font-weight:500; letter-spacing:.1em; color:var(--text-muted); text-transform:uppercase; }
+
+    /* Blog grid */
+    .blog-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem; }
+    .blog-card { display:flex; flex-direction:column; text-decoration:none; color:inherit; }
+    .blog-card-img { aspect-ratio:3/2; overflow:hidden; margin-bottom:1.25rem; }
+    .blog-card-img img { width:100%; height:100%; object-fit:cover; transition:transform .7s var(--ease); }
+    .blog-card:hover .blog-card-img img { transform:scale(1.05); }
+    .blog-card-tag { font-family:var(--sans); font-size:.5rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--text-muted); margin-bottom:.5rem; }
+    .blog-card-title { font-family:var(--serif); font-size:1.2rem; font-weight:400; letter-spacing:.02em; line-height:1.3; margin-bottom:.6rem; }
+    .blog-card-excerpt { font-size:.8125rem; color:var(--text-muted); line-height:1.7; margin-bottom:.75rem; flex:1; }
+    .blog-card-meta { font-family:var(--sans); font-size:.5625rem; font-weight:500; letter-spacing:.1em; color:var(--text-muted); text-transform:uppercase; }
+    .blog-card-read { display:inline-flex; align-items:center; gap:.4rem; font-family:var(--sans); font-size:.5625rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase; border-bottom:1px solid var(--border); padding-bottom:1px; transition:border-color var(--fast); margin-top:.75rem; }
+    .blog-card:hover .blog-card-read { border-color:var(--text); }
+
+    /* Sidebar layout for wider blog */
+    .blog-layout { display:grid; grid-template-columns:1fr 280px; gap:4rem; align-items:start; }
+    .blog-sidebar { position:sticky; top:calc(var(--nav-h) + 2rem); }
+    .sidebar-section { margin-bottom:2.5rem; padding-bottom:2.5rem; border-bottom:1px solid var(--border); }
+    .sidebar-section:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+    .sidebar-title { font-family:var(--sans); font-size:.5625rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--text-muted); margin-bottom:1.25rem; }
+    .sidebar-cats { display:flex; flex-direction:column; gap:.6rem; }
+    .sidebar-cat { font-size:.8125rem; color:var(--text); border-bottom:1px solid transparent; padding-bottom:1px; transition:border-color var(--fast); cursor:pointer; }
+    .sidebar-cat:hover { border-color:var(--text); }
+    .sidebar-recent { display:flex; flex-direction:column; gap:1.25rem; }
+    .sidebar-post { display:flex; gap:.9rem; text-decoration:none; color:inherit; }
+    .sidebar-post-img { width:70px; height:55px; flex-shrink:0; overflow:hidden; }
+    .sidebar-post-img img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+    .sidebar-post:hover .sidebar-post-img img { transform:scale(1.08); }
+    .sidebar-post-title { font-family:var(--serif); font-size:.9rem; line-height:1.3; margin-bottom:.3rem; }
+    .sidebar-post-date { font-family:var(--sans); font-size:.5rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); }
+
+    /* Newsletter CTA */
+    .newsletter-strip {
+      background:var(--text); color:var(--white); padding-block:clamp(3rem,5vw,5rem);
+    }
+    .newsletter-inner { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+    .newsletter-text h2 {
+      font-family:var(--serif); font-size:clamp(1.8rem,3vw,2.8rem); text-transform:uppercase; letter-spacing:.02em; margin-bottom:.75rem;
+    }
+    .newsletter-text p { font-size:.875rem; color:rgba(255,255,255,.6); line-height:1.8; }
+    .newsletter-form { display:flex; gap:.75rem; }
+    .newsletter-form input {
+      flex:1; background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,.3);
+      padding:.75rem 0; font-family:var(--sans); font-size:.875rem; color:var(--white); outline:none;
+      transition:border-color var(--fast);
+    }
+    .newsletter-form input::placeholder { color:rgba(255,255,255,.35); }
+    .newsletter-form input:focus { border-color:rgba(255,255,255,.7); }
+
+    /* Responsive */
+    @media (max-width:1200px) { .blog-layout { grid-template-columns:1fr; } .blog-sidebar { position:static; } }
+    @media (max-width:1024px) { .blog-grid { grid-template-columns:1fr 1fr; } }
+    @media (max-width:768px) {
+      .blog-featured { grid-template-columns:1fr; }
+      .blog-grid { grid-template-columns:1fr; }
+      .newsletter-inner { grid-template-columns:1fr; }
+      .newsletter-form { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="nav-logo-text"><span>UNITED ELITE</span><span class="logo-sub">GROUP</span></div>
+      </a>
+      <nav class="nav-links">
+        <a href="about-us.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="partnership.html">Partnership</a>
+      </nav>
+      <a href="index.html#contact" class="nav-contact"><span class="nav-dot"></span>Contact Us</a>
+      <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <nav class="nav-mobile-drawer">
+    <a href="about-us.html">About</a><a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a><a href="blog.html">Blog</a>
+    <a href="partnership.html">Partnership</a><a href="index.html#contact">Contact Us</a>
+  </nav>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&auto=format&fit=crop&q=80" alt="Luxury interior design inspiration" loading="eager" />
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content container">
+        <h1>The Blog</h1>
+        <p>Design ideas, renovation guides &amp; NYC building expertise</p>
+      </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div class="blog-filter-bar">
+      <div class="container">
+        <div class="blog-filter-inner">
+          <span class="blog-filter-label">Category</span>
+          <div class="blog-filter-btns">
+            <button class="blog-filter-btn active">All</button>
+            <button class="blog-filter-btn">Bathroom Ideas</button>
+            <button class="blog-filter-btn">Kitchen Ideas</button>
+            <button class="blog-filter-btn">Interior Design Trends</button>
+            <button class="blog-filter-btn">Building Regulations</button>
+            <button class="blog-filter-btn">Cozy Corners</button>
+            <button class="blog-filter-btn">Architectural Styles</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOG -->
+    <section class="blog-section">
+      <div class="container">
+        <div class="blog-layout">
+
+          <!-- Main content -->
+          <div>
+            <!-- Featured post -->
+            <a class="blog-featured reveal" href="#" style="text-decoration:none; color:inherit; display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,4vw,5rem); align-items:center; margin-bottom:clamp(3rem,5vw,5rem); padding-bottom:clamp(3rem,5vw,5rem); border-bottom:1px solid var(--border);">
+              <div class="blog-featured-img">
+                <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&auto=format&fit=crop&q=80" alt="Spa bathroom NYC apartment" loading="lazy" />
+              </div>
+              <div>
+                <div class="blog-featured-tag">Bathroom Ideas &nbsp;·&nbsp; Featured</div>
+                <h2 class="blog-featured-title">Designing a Spa-Level Bathroom in a New York Apartment</h2>
+                <p class="blog-featured-excerpt">Transform your NYC apartment bathroom into a luxurious retreat using natural materials, statement fixtures, smart layered lighting, and calming accessories that feel entirely bespoke.</p>
+                <div class="blog-featured-meta">
+                  <span class="blog-featured-date">May 06, 2025</span>
+                  <span class="underline-link">Read Article</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Blog grid -->
+            <div class="blog-grid">
+
+              <a class="blog-card reveal" href="#">
+                <div class="blog-card-img">
+                  <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&auto=format&fit=crop&q=80" alt="DOB process NYC" loading="lazy"/>
+                </div>
+                <span class="blog-card-tag">Building Regulations &amp; Engineering</span>
+                <h3 class="blog-card-title">Navigating the DOB Process: 5 Key Things You Need to Know</h3>
+                <p class="blog-card-excerpt">Five essential aspects of NYC Department of Buildings approval — permits, licensed professionals, DOB NOW, permit types, and getting inspections right the first time.</p>
+                <span class="blog-card-meta">May 03, 2025</span>
+                <span class="blog-card-read">Read More &#8594;</span>
+              </a>
+
+              <a class="blog-card reveal" href="#">
+                <div class="blog-card-img">
+                  <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&auto=format&fit=crop&q=80" alt="Family home design" loading="lazy"/>
+                </div>
+                <span class="blog-card-tag">Interior Design Trends</span>
+                <h3 class="blog-card-title">Family Design: 5 Ideas for Homes with Children</h3>
+                <p class="blog-card-excerpt">Design strategies that balance style with practicality — flexible layouts, durable materials, natural accents, and hidden storage that works for the whole family.</p>
+                <span class="blog-card-meta">May 01, 2025</span>
+                <span class="blog-card-read">Read More &#8594;</span>
+              </a>
+
+              <a class="blog-card reveal" href="#">
+                <div class="blog-card-img">
+                  <img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=700&auto=format&fit=crop&q=80" alt="Basement renovation" loading="lazy"/>
+                </div>
+                <span class="blog-card-tag">Interior Design Trends</span>
+                <h3 class="blog-card-title">Below Ground, Above Expectations: Basement Renovations That Feel Good</h3>
+                <p class="blog-card-excerpt">Waterproofing, climate control, egress, and design choices that transform below-grade spaces into warm, spacious, genuinely livable rooms.</p>
+                <span class="blog-card-meta">Apr 28, 2025</span>
+                <span class="blog-card-read">Read More &#8594;</span>
+              </a>
+
+              <a class="blog-card reveal" href="#">
+                <div class="blog-card-img">
+                  <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=700&auto=format&fit=crop&q=80" alt="Pet-friendly home design" loading="lazy"/>
+                </div>
+                <span class="blog-card-tag">Interior Design Trends</span>
+                <h3 class="blog-card-title">For the Dogs (and Cats, and Rabbits): How to Create a Pet-Friendly Home</h3>
+                <p class="blog-card-excerpt">Durable materials, hidden pet zones, and seamless flooring solutions that work beautifully for both four-legged residents and discerning homeowners.</p>
+                <span class="blog-card-meta">Apr 25, 2025</span>
+                <span class="blog-card-read">Read More &#8594;</span>
+              </a>
+
+              <a class="blog-card reveal" href="#">
+                <div class="blog-card-img">
+                  <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&auto=format&fit=crop&q=80" alt="Perfect living room" loading="lazy"/>
+                </div>
+                <span class="blog-card-tag">Cozy Corners</span>
+                <h3 class="blog-card-title">The Art of Hosting: The Essentials of a Perfect Living Room</h3>
+                <p class="blog-card-excerpt">Architectural elements, the Golden Ratio in furniture arrangement, layered lighting, and curated textures that make a living room the ultimate gathering space.</p>
+                <span class="blog-card-meta">Apr 24, 2025</span>
+                <span class="blog-card-read">Read More &#8594;</span>
+              </a>
+
+              <a class="blog-card reveal" href="#">
+                <div class="blog-card-img">
+                  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&auto=format&fit=crop&q=80" alt="Sustainable design" loading="lazy"/>
+                </div>
+                <span class="blog-card-tag">Interior Design Trends</span>
+                <h3 class="blog-card-title">5 Sustainable Design Ideas for Your Apartment</h3>
+                <p class="blog-card-excerpt">Eco-friendly materials, energy-efficient systems, vintage finds, and natural finishes that create sophisticated, environmentally conscious interiors.</p>
+                <span class="blog-card-meta">Apr 21, 2025</span>
+                <span class="blog-card-read">Read More &#8594;</span>
+              </a>
+
+              <a class="blog-card reveal" href="#">
+                <div class="blog-card-img">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&auto=format&fit=crop&q=80" alt="European interior charm" loading="lazy"/>
+                </div>
+                <span class="blog-card-tag">Architectural Styles &amp; History</span>
+                <h3 class="blog-card-title">From Paris to Park Avenue: How to Bring European Charm Into Your Interior</h3>
+                <p class="blog-card-excerpt">Aged materials, warm palettes, handcrafted details, and timeless proportions that give New York homes an old-world soul.</p>
+                <span class="blog-card-meta">Apr 14, 2025</span>
+                <span class="blog-card-read">Read More &#8594;</span>
+              </a>
+
+              <a class="blog-card reveal" href="#">
+                <div class="blog-card-img">
+                  <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=700&auto=format&fit=crop&q=80" alt="Open plan living" loading="lazy"/>
+                </div>
+                <span class="blog-card-tag">Building Regulations &amp; Engineering</span>
+                <h3 class="blog-card-title">Open Plan Living: When to Break Down Walls (and When Not To)</h3>
+                <p class="blog-card-excerpt">Structural vs. non-structural walls, DOB requirements for NYC apartments, and design strategies for creating light-filled spaces safely.</p>
+                <span class="blog-card-meta">Apr 07, 2025</span>
+                <span class="blog-card-read">Read More &#8594;</span>
+              </a>
+
+              <a class="blog-card reveal" href="#">
+                <div class="blog-card-img">
+                  <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&auto=format&fit=crop&q=80" alt="Kitchen materials" loading="lazy"/>
+                </div>
+                <span class="blog-card-tag">Kitchen Ideas</span>
+                <h3 class="blog-card-title">The Material Edit: Choosing the Right Surfaces for Your Kitchen</h3>
+                <p class="blog-card-excerpt">A deep dive into countertop and backsplash materials — marble, quartzite, porcelain slabs — weighed by durability, maintenance, and aesthetic longevity.</p>
+                <span class="blog-card-meta">Mar 28, 2025</span>
+                <span class="blog-card-read">Read More &#8594;</span>
+              </a>
+
+              <a class="blog-card reveal" href="#">
+                <div class="blog-card-img">
+                  <img src="https://images.unsplash.com/photo-1561375996-8ad0b43a2b63?w=700&auto=format&fit=crop&q=80" alt="Lighting design" loading="lazy"/>
+                </div>
+                <span class="blog-card-tag">Interior Design Trends</span>
+                <h3 class="blog-card-title">Lighting as Architecture: How Illumination Defines a Space</h3>
+                <p class="blog-card-excerpt">Layered lighting design — ambient, task, and accent — plus the case for architectural lighting and why lighting decisions should come before finishes.</p>
+                <span class="blog-card-meta">Mar 14, 2025</span>
+                <span class="blog-card-read">Read More &#8594;</span>
+              </a>
+
+              <a class="blog-card reveal" href="#">
+                <div class="blog-card-img">
+                  <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&auto=format&fit=crop&q=80" alt="Co-op renovation guide NYC" loading="lazy"/>
+                </div>
+                <span class="blog-card-tag">Building Regulations &amp; Engineering</span>
+                <h3 class="blog-card-title">The Complete Guide to Renovating a NYC Co-op</h3>
+                <p class="blog-card-excerpt">Board alteration agreements, house rules, work hours, insurance requirements, and how to structure your renovation to sail through co-op approval.</p>
+                <span class="blog-card-meta">Mar 05, 2025</span>
+                <span class="blog-card-read">Read More &#8594;</span>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="blog-sidebar">
+            <div class="sidebar-section">
+              <div class="sidebar-title">Categories</div>
+              <div class="sidebar-cats">
+                <span class="sidebar-cat">Bathroom Ideas</span>
+                <span class="sidebar-cat">Kitchen Ideas</span>
+                <span class="sidebar-cat">Interior Design Trends</span>
+                <span class="sidebar-cat">Building Regulations &amp; Engineering</span>
+                <span class="sidebar-cat">Cozy Corners</span>
+                <span class="sidebar-cat">Architectural Styles &amp; History</span>
+              </div>
+            </div>
+
+            <div class="sidebar-section">
+              <div class="sidebar-title">Recent Posts</div>
+              <div class="sidebar-recent">
+                <a class="sidebar-post" href="#">
+                  <div class="sidebar-post-img"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=200&auto=format&fit=crop&q=80" alt="" loading="lazy"/></div>
+                  <div>
+                    <div class="sidebar-post-title">Designing a Spa-Level Bathroom in a New York Apartment</div>
+                    <div class="sidebar-post-date">May 06, 2025</div>
+                  </div>
+                </a>
+                <a class="sidebar-post" href="#">
+                  <div class="sidebar-post-img"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=200&auto=format&fit=crop&q=80" alt="" loading="lazy"/></div>
+                  <div>
+                    <div class="sidebar-post-title">Navigating the DOB Process: 5 Key Things</div>
+                    <div class="sidebar-post-date">May 03, 2025</div>
+                  </div>
+                </a>
+                <a class="sidebar-post" href="#">
+                  <div class="sidebar-post-img"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&auto=format&fit=crop&q=80" alt="" loading="lazy"/></div>
+                  <div>
+                    <div class="sidebar-post-title">The Art of Hosting: The Essentials of a Perfect Living Room</div>
+                    <div class="sidebar-post-date">Apr 24, 2025</div>
+                  </div>
+                </a>
+                <a class="sidebar-post" href="#">
+                  <div class="sidebar-post-img"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&auto=format&fit=crop&q=80" alt="" loading="lazy"/></div>
+                  <div>
+                    <div class="sidebar-post-title">The Material Edit: Choosing Kitchen Surfaces</div>
+                    <div class="sidebar-post-date">Mar 28, 2025</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="sidebar-section">
+              <div class="sidebar-title">Start a Project</div>
+              <p style="font-size:.8125rem; color:var(--text-muted); line-height:1.7; margin-bottom:1rem;">Ready to renovate? Get a free, no-obligation consultation.</p>
+              <a href="index.html#contact" class="btn btn-fill" style="width:100%; justify-content:center;">Book a Consultation</a>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-strip">
+      <div class="container">
+        <div class="newsletter-inner">
+          <div class="newsletter-text reveal">
+            <h2>Stay Inspired</h2>
+            <p>Get the latest renovation tips, design ideas, and NYC building insights delivered to your inbox monthly.</p>
+          </div>
+          <form class="newsletter-form reveal" action="#" method="post">
+            <input type="email" placeholder="Your email address" aria-label="Email address" />
+            <button type="submit" class="btn btn-white" style="flex-shrink:0">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            <div class="nav-logo-text"><span>UNITED ELITE</span><span class="logo-sub">GROUP</span></div>
+          </div>
+          <p class="footer-tagline">New York City's premier luxury renovation contractor and construction manager since 2012.</p>
+          <div class="footer-social"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Houzz</a></div>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <nav class="footer-nav">
+            <a href="about-us.html">About Us</a><a href="portfolio.html">Portfolio</a>
+            <a href="services.html">Services</a><a href="blog.html">Blog</a>
+            <a href="partnership.html">Partnership</a><a href="index.html#contact">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <nav class="footer-nav">
+            <a href="services.html">Full Gut Renovation</a><a href="services.html">Kitchen Renovation</a>
+            <a href="services.html">Bathroom Renovation</a><a href="services.html">Townhouse Renovation</a>
+            <a href="services.html">Basement Renovation</a><a href="services.html">Custom Millwork</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-contact">
+            <p><a href="tel:+17184391222">+1 (718) 439-1222</a></p>
+            <p>555 Madison Ave<br>New York, NY 10022</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 United Elite Group. All rights reserved.</p>
+        <p class="footer-copy">NYC General Contractor License #2005693</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
