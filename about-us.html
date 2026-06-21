@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | United Elite Group</title>
+  <meta name="description" content="Founded in 2012, United Elite Group is NYC's trusted luxury renovation contractor. Meet our team and learn about our approach." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    /* ---- About-page styles ---- */
+    body { padding-top: var(--nav-h); }
+
+    /* Page hero */
+    .page-hero {
+      position: relative;
+      height: 65vh;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .page-hero img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.25) 0%, rgba(0,0,0,.5) 100%);
+    }
+    .page-hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(2rem, 5vw, 4rem) var(--gutter);
+    }
+    .page-hero-content h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 7rem);
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      color: var(--white);
+      line-height: 1;
+    }
+    .page-hero-content p {
+      font-family: var(--sans);
+      font-size: .8125rem;
+      color: rgba(255,255,255,.75);
+      letter-spacing: .1em;
+      margin-top: 1rem;
+    }
+
+    /* Mission */
+    .mission-section {
+      padding-block: clamp(5rem, 9vw, 9rem);
+    }
+    .mission-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: center;
+    }
+    .mission-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      line-height: 1.05;
+      margin-bottom: 1.75rem;
+    }
+    .mission-text p {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+      margin-bottom: 1.25rem;
+    }
+    .mission-image {
+      position: relative;
+    }
+    .mission-image-main {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .mission-image-main img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .mission-image-accent {
+      position: absolute;
+      bottom: -2rem;
+      left: -2rem;
+      width: 55%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border: 6px solid var(--bg);
+    }
+    .mission-image-accent img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* Stats */
+    .about-stats {
+      background: var(--bg-alt);
+      padding-block: clamp(3.5rem, 6vw, 6rem);
+    }
+    .about-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .about-stat-num {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .about-stat-label {
+      font-family: var(--sans);
+      font-size: .5625rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Values */
+    .values-section {
+      padding-block: clamp(5rem, 9vw, 9rem);
+    }
+    .values-intro {
+      max-width: 560px;
+      margin-bottom: clamp(3rem, 5vw, 5rem);
+    }
+    .values-intro h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      line-height: 1.05;
+      margin-bottom: 1.25rem;
+    }
+    .values-intro p { font-size: .875rem; color: var(--text-muted); line-height: 1.85; }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .value-card {
+      padding: 2.5rem;
+      background: var(--bg-alt);
+    }
+    .value-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .value-card h3 {
+      font-family: var(--sans);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .value-card p { font-size: .8125rem; color: var(--text-muted); line-height: 1.75; }
+
+    /* Team */
+    .team-section {
+      padding-block: clamp(5rem, 9vw, 9rem);
+      background: var(--bg-alt);
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: clamp(2.5rem, 4vw, 4rem);
+    }
+    .team-card { display: flex; flex-direction: column; }
+    .team-card-img {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      background: var(--bg);
+    }
+    .team-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform .7s var(--ease);
+    }
+    .team-card:hover .team-card-img img { transform: scale(1.04); }
+    .team-card-name {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: .2rem;
+    }
+    .team-card-title {
+      font-family: var(--sans);
+      font-size: .5625rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Process full */
+    .process-full-section {
+      padding-block: clamp(5rem, 9vw, 9rem);
+    }
+    .process-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: clamp(2.5rem, 4vw, 4rem);
+    }
+    .process-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      padding: 2rem;
+      background: var(--bg-alt);
+      align-items: start;
+    }
+    .process-row-num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+    }
+    .process-row-content h3 {
+      font-family: var(--sans);
+      font-size: .8125rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+    .process-row-content p { font-size: .875rem; color: var(--text-muted); line-height: 1.8; }
+
+    /* CTA banner */
+    .about-cta {
+      background: var(--text);
+      color: var(--white);
+      padding-block: clamp(4rem, 7vw, 7rem);
+      text-align: center;
+    }
+    .about-cta h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      margin-bottom: 1rem;
+    }
+    .about-cta p {
+      font-size: .875rem;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+      margin-inline: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .team-grid { grid-template-columns: repeat(3, 1fr); }
+      .about-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .mission-inner { grid-template-columns: 1fr; }
+      .mission-image-accent { display: none; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .about-stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="nav-logo-text">
+          <span>UNITED ELITE</span>
+          <span class="logo-sub">GROUP</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="about-us.html" class="active">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="partnership.html">Partnership</a>
+      </nav>
+      <a href="index.html#contact" class="nav-contact">
+        <span class="nav-dot"></span>Contact Us
+      </a>
+      <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <nav class="nav-mobile-drawer">
+    <a href="about-us.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a>
+    <a href="blog.html">Blog</a>
+    <a href="partnership.html">Partnership</a>
+    <a href="index.html#contact">Contact Us</a>
+  </nav>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&auto=format&fit=crop&q=80" alt="Luxury renovated interior" loading="eager" />
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content container">
+        <h1>About Us</h1>
+        <p>New York City's trusted luxury renovation partner since 2012</p>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="mission-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Our Story</span>
+          <span class="t-label" style="color:var(--border)">01</span>
+        </div>
+        <div class="mission-inner">
+          <div class="mission-text reveal">
+            <h2>Your Vision — Our Finest Execution</h2>
+            <p>
+              United Elite Group was founded in 2012 with a single conviction: that New York City homeowners
+              deserved a luxury renovation contractor who treated their home with the same care and precision
+              they would expect from any bespoke service.
+            </p>
+            <p>
+              Over thirteen years, we've grown into a team of 42 high-end specialists and completed more than
+              150 projects across Manhattan, Brooklyn, and Queens — but that founding conviction has never
+              changed. Every project, regardless of scale, receives our full attention, expertise, and commitment
+              to excellence.
+            </p>
+            <p>
+              Whether you're a homeowner with a clear vision, an interior designer seeking a reliable execution
+              partner, or an architect who needs a contractor who truly understands your drawings — United Elite
+              Group is built to exceed your expectations at every step.
+            </p>
+            <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap">
+              <a href="index.html#contact" class="btn btn-fill">Free Consultation</a>
+              <a href="portfolio.html" class="btn">View Our Work</a>
+            </div>
+          </div>
+
+          <div class="mission-image reveal">
+            <div class="mission-image-main">
+              <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=900&auto=format&fit=crop&q=80" alt="Luxury kitchen renovation NYC" loading="lazy" />
+            </div>
+            <div class="mission-image-accent">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&auto=format&fit=crop&q=80" alt="Interior detail" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="about-stats">
+      <div class="container">
+        <div class="about-stats-grid">
+          <div class="reveal">
+            <div class="about-stat-num">150<span style="font-size:.6em">+</span></div>
+            <div class="about-stat-label">Projects Released</div>
+          </div>
+          <div class="reveal">
+            <div class="about-stat-num">13</div>
+            <div class="about-stat-label">Years of Experience</div>
+          </div>
+          <div class="reveal">
+            <div class="about-stat-num">42</div>
+            <div class="about-stat-label">High-End Specialists</div>
+          </div>
+          <div class="reveal">
+            <div class="about-stat-num">7<span style="font-size:.6em">+</span></div>
+            <div class="about-stat-label">Houzz Awards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VALUES -->
+    <section class="values-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">What We Stand For</span>
+          <span class="t-label" style="color:var(--border)">02</span>
+        </div>
+        <div class="values-intro reveal">
+          <h2>Built on Craft, Trust &amp; Precision</h2>
+          <p>Every decision we make — from how we hire our team to how we communicate with clients — flows from these core principles.</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div class="value-num">01</div>
+            <h3>Craftsmanship First</h3>
+            <p>We never cut corners. Every surface, joint, and finish is executed to the standard we'd apply to our own homes — because we know you'll live with it for years.</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-num">02</div>
+            <h3>Transparent Communication</h3>
+            <p>You'll know exactly where your project stands, every step of the way. Regular updates, honest timelines, and no surprises — that's our commitment.</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-num">03</div>
+            <h3>Design Fidelity</h3>
+            <p>We build what you designed. Whether we're working from a full set of architectural drawings or a mood board, we deliver the vision — precisely.</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-num">04</div>
+            <h3>Premium Material Sourcing</h3>
+            <p>Access to the best trade suppliers in NYC, from exotic stone and custom millwork to high-end plumbing fixtures — materials that elevate the finished result.</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-num">05</div>
+            <h3>NYC Expertise</h3>
+            <p>Deep knowledge of co-op alteration agreements, DOB permitting, landmark requirements, and building-management protocols that only come with a decade in New York.</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-num">06</div>
+            <h3>White-Glove Service</h3>
+            <p>From the first consultation to the post-completion walkthrough, you'll experience the level of care and attention that luxury renovation demands.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Our Team</span>
+          <span class="t-label" style="color:var(--text-muted)">03</span>
+        </div>
+        <h2 class="t-headline reveal" style="max-width:560px; margin-bottom:clamp(2.5rem,4vw,4rem)">The People Behind Every Project</h2>
+
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <div class="team-card-img">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=80" alt="Tolib Mansurov" loading="lazy" />
+            </div>
+            <div class="team-card-name">Tolib Mansurov</div>
+            <div class="team-card-title">Founder &amp; CEO</div>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-card-img">
+              <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&auto=format&fit=crop&q=80" alt="Nathan Ho" loading="lazy" />
+            </div>
+            <div class="team-card-name">Nathan Ho</div>
+            <div class="team-card-title">Project Manager</div>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-card-img">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80" alt="Oybek Shakirov" loading="lazy" />
+            </div>
+            <div class="team-card-name">Oybek Shakirov</div>
+            <div class="team-card-title">Chief Financial Officer</div>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-card-img">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=80" alt="Diana Pivtorak" loading="lazy" />
+            </div>
+            <div class="team-card-name">Diana Pivtorak</div>
+            <div class="team-card-title">Office Manager</div>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-card-img">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&auto=format&fit=crop&q=80" alt="Salomon Danielov" loading="lazy" />
+            </div>
+            <div class="team-card-name">Salomon Danielov</div>
+            <div class="team-card-title">Head of Sales</div>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-card-img">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&auto=format&fit=crop&q=80" alt="Margot Ellisen" loading="lazy" />
+            </div>
+            <div class="team-card-name">Margot Ellisen</div>
+            <div class="team-card-title">Senior Design Architect</div>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-card-img">
+              <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&auto=format&fit=crop&q=80" alt="Sloane Avery" loading="lazy" />
+            </div>
+            <div class="team-card-name">Sloane Avery</div>
+            <div class="team-card-title">Land Use Attorney</div>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-card-img">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80" alt="Karim Solano" loading="lazy" />
+            </div>
+            <div class="team-card-name">Karim Solano</div>
+            <div class="team-card-title">Operations Manager</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process-full-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">How We Work</span>
+          <span class="t-label" style="color:var(--border)">04</span>
+        </div>
+        <h2 class="t-headline reveal" style="max-width:480px">Partners from the Very Beginning</h2>
+
+        <div class="process-timeline">
+          <div class="process-row reveal">
+            <div class="process-row-num">01</div>
+            <div class="process-row-content">
+              <h3>Planning &amp; Estimates</h3>
+              <p>We begin with a thorough walkthrough of your space, review of any existing drawings, and a deep conversation about your goals, timeline, and budget. We then produce a detailed scope of work, material specifications, and a fully itemized estimate — so you know exactly what you're getting before we begin.</p>
+            </div>
+          </div>
+          <div class="process-row reveal">
+            <div class="process-row-num">02</div>
+            <div class="process-row-content">
+              <h3>Construction Process</h3>
+              <p>Once plans are approved and contracts signed, our project manager takes the reins. Every trade is sequenced precisely, materials are ordered and staged, and a dedicated superintendent oversees the site daily. You receive weekly written updates and have direct access to your project manager throughout.</p>
+            </div>
+          </div>
+          <div class="process-row reveal">
+            <div class="process-row-num">03</div>
+            <div class="process-row-content">
+              <h3>Protocol &amp; Safety</h3>
+              <p>We handle all DOB permit filings, co-op alteration agreement compliance, and building management coordination. Our team adheres strictly to work-hour regulations and building rules — protecting your relationship with your building while keeping the project on track. Eco-friendly waste management and dust containment are standard.</p>
+            </div>
+          </div>
+          <div class="process-row reveal">
+            <div class="process-row-num">04</div>
+            <div class="process-row-content">
+              <h3>Service &amp; Guarantee</h3>
+              <p>Before we hand over the keys, we complete a detailed punch-list walkthrough with you — addressing every item to your satisfaction. We provide a written workmanship warranty and remain available post-completion for any maintenance questions or follow-up needs. The relationship doesn't end when construction does.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="about-cta">
+      <div class="container">
+        <h2 class="reveal">Ready to Begin?</h2>
+        <p class="reveal">Schedule your free, no-obligation consultation — in your home or virtually — and let's start turning your vision into reality.</p>
+        <a href="index.html#contact" class="btn btn-white reveal">Book a Free Consultation</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            <div class="nav-logo-text"><span>UNITED ELITE</span><span class="logo-sub">GROUP</span></div>
+          </div>
+          <p class="footer-tagline">New York City's premier luxury renovation contractor and construction manager since 2012.</p>
+          <div class="footer-social">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Houzz</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <nav class="footer-nav">
+            <a href="about-us.html">About Us</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="services.html">Services</a>
+            <a href="blog.html">Blog</a>
+            <a href="partnership.html">Partnership</a>
+            <a href="index.html#contact">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <nav class="footer-nav">
+            <a href="services.html">Full Gut Renovation</a>
+            <a href="services.html">Kitchen Renovation</a>
+            <a href="services.html">Bathroom Renovation</a>
+            <a href="services.html">Townhouse Renovation</a>
+            <a href="services.html">Basement Renovation</a>
+            <a href="services.html">Custom Millwork</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-contact">
+            <p><a href="tel:+17184391222">+1 (718) 439-1222</a></p>
+            <p>555 Madison Ave<br>New York, NY 10022</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 United Elite Group. All rights reserved.</p>
+        <p class="footer-copy">NYC General Contractor License #2005693</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
