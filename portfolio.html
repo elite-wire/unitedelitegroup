@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | United Elite Group</title>
+  <meta name="description" content="Browse 19+ completed luxury renovation projects across Manhattan, Brooklyn, and Queens — from full gut renovations to bespoke kitchen and bathroom transformations." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    body { padding-top: var(--nav-h); }
+
+    /* Page hero */
+    .page-hero {
+      position: relative;
+      height: 55vh;
+      min-height: 360px;
+      overflow: hidden;
+    }
+    .page-hero img { width:100%; height:100%; object-fit:cover; object-position:center 35%; }
+    .page-hero-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to bottom,rgba(0,0,0,.2) 0%,rgba(0,0,0,.55) 100%);
+    }
+    .page-hero-content {
+      position:absolute; inset:0;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      padding: clamp(2rem,5vw,4rem) var(--gutter);
+    }
+    .page-hero-content h1 {
+      font-family:var(--serif);
+      font-size:clamp(3rem,8vw,7rem);
+      text-transform:uppercase;
+      letter-spacing:.03em;
+      color:var(--white); line-height:1;
+    }
+    .page-hero-content p {
+      font-family:var(--sans); font-size:.8125rem;
+      color:rgba(255,255,255,.7); letter-spacing:.1em; margin-top:1rem;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      padding-block: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-inner {
+      display:flex; align-items:center; gap:2rem; flex-wrap:wrap;
+    }
+    .filter-label {
+      font-family:var(--sans); font-size:.5625rem; font-weight:600;
+      letter-spacing:.22em; text-transform:uppercase; color:var(--text-muted);
+      flex-shrink:0;
+    }
+    .filter-btns { display:flex; gap:.75rem; flex-wrap:wrap; }
+    .filter-btn {
+      font-family:var(--sans); font-size:.5625rem; font-weight:600;
+      letter-spacing:.18em; text-transform:uppercase;
+      padding:.5rem 1.1rem;
+      border:1px solid var(--border);
+      color:var(--text-muted);
+      cursor:pointer;
+      transition:all var(--fast);
+      background:transparent;
+    }
+    .filter-btn:hover { border-color:var(--text); color:var(--text); }
+    .filter-btn.active { background:var(--text); color:var(--white); border-color:var(--text); }
+
+    /* Portfolio grid */
+    .portfolio-section { padding-block: clamp(3rem,6vw,6rem); }
+
+    .portfolio-grid {
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:1.5rem;
+    }
+
+    /* Featured card (first card = large) */
+    .portfolio-card {
+      display:flex; flex-direction:column;
+      cursor:pointer; text-decoration:none; color:inherit;
+    }
+    .portfolio-card.featured {
+      grid-column: 1 / 3;
+    }
+    .portfolio-card-img {
+      overflow:hidden; position:relative;
+      aspect-ratio:3/4;
+    }
+    .portfolio-card.featured .portfolio-card-img {
+      aspect-ratio:16/9;
+    }
+    .portfolio-card-img img {
+      width:100%; height:100%;
+      object-fit:cover;
+      transition:transform .7s var(--ease);
+    }
+    .portfolio-card:hover .portfolio-card-img img { transform:scale(1.05); }
+    .portfolio-card-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 50%);
+      opacity:0; transition:opacity var(--med);
+      display:flex; align-items:flex-end; padding:1.5rem;
+    }
+    .portfolio-card:hover .portfolio-card-overlay { opacity:1; }
+    .overlay-view {
+      font-family:var(--sans); font-size:.5625rem; font-weight:600;
+      letter-spacing:.18em; text-transform:uppercase;
+      color:var(--white);
+      border-bottom:1px solid rgba(255,255,255,.6);
+      padding-bottom:2px;
+    }
+    .portfolio-card-info {
+      padding-top:.9rem;
+      display:flex; justify-content:space-between; align-items:flex-start; gap:1rem;
+    }
+    .portfolio-card-name {
+      font-family:var(--serif); font-size:1.15rem; font-weight:400; letter-spacing:.02em;
+    }
+    .portfolio-card.featured .portfolio-card-name { font-size:1.4rem; }
+    .portfolio-card-year {
+      font-family:var(--sans); font-size:.5625rem; font-weight:500;
+      letter-spacing:.12em; color:var(--text-muted); flex-shrink:0; margin-top:.2rem;
+    }
+    .portfolio-card-meta {
+      font-family:var(--sans); font-size:.5625rem; font-weight:500;
+      letter-spacing:.13em; text-transform:uppercase; color:var(--text-muted);
+      margin-top:.2rem;
+    }
+
+    /* Project count */
+    .portfolio-count {
+      font-family:var(--sans); font-size:.75rem; color:var(--text-muted);
+      padding-bottom:2rem;
+    }
+
+    /* Responsive */
+    @media (max-width:1024px) {
+      .portfolio-grid { grid-template-columns:1fr 1fr; }
+      .portfolio-card.featured { grid-column:1 / -1; }
+    }
+    @media (max-width:640px) {
+      .portfolio-grid { grid-template-columns:1fr; }
+      .portfolio-card.featured { grid-column:1; }
+      .portfolio-card.featured .portfolio-card-img { aspect-ratio:4/3; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="nav-logo-text"><span>UNITED ELITE</span><span class="logo-sub">GROUP</span></div>
+      </a>
+      <nav class="nav-links">
+        <a href="about-us.html">About</a>
+        <a href="portfolio.html" class="active">Portfolio</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="partnership.html">Partnership</a>
+      </nav>
+      <a href="index.html#contact" class="nav-contact"><span class="nav-dot"></span>Contact Us</a>
+      <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <nav class="nav-mobile-drawer">
+    <a href="about-us.html">About</a><a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a><a href="blog.html">Blog</a>
+    <a href="partnership.html">Partnership</a><a href="index.html#contact">Contact Us</a>
+  </nav>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1920&auto=format&fit=crop&q=80" alt="Luxury NYC apartment interior" loading="eager" />
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content container">
+        <h1>Portfolio</h1>
+        <p>19+ completed projects across Manhattan, Brooklyn &amp; Queens</p>
+      </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <div class="container">
+        <div class="filter-inner">
+          <span class="filter-label">Filter by type</span>
+          <div class="filter-btns">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Full-Home Renovation">Full-Home</button>
+            <button class="filter-btn" data-filter="Kitchen Renovation">Kitchen</button>
+            <button class="filter-btn" data-filter="Bathroom Renovation">Bathroom</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTFOLIO GRID -->
+    <section class="portfolio-section">
+      <div class="container">
+        <p class="portfolio-count reveal">Showing <strong>19</strong> projects</p>
+        <div class="portfolio-grid">
+
+          <a class="portfolio-card featured reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&auto=format&fit=crop&q=80" alt="Avenue B" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Avenue B</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Contemporary</div>
+              </div>
+              <div class="portfolio-card-year">2025</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Kitchen Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80" alt="Heller Loft" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Heller Loft</div>
+                <div class="portfolio-card-meta">Kitchen Renovation &nbsp;·&nbsp; Modern</div>
+              </div>
+              <div class="portfolio-card-year">2025</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&auto=format&fit=crop&q=80" alt="West Chelsea Residence" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">West Chelsea Residence</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Contemporary</div>
+              </div>
+              <div class="portfolio-card-year">2022</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&auto=format&fit=crop&q=80" alt="Tribeca Apartment" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Tribeca Apartment</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Contemporary</div>
+              </div>
+              <div class="portfolio-card-year">2024</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&auto=format&fit=crop&q=80" alt="Chelsea Apartment" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Chelsea Apartment</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Contemporary</div>
+              </div>
+              <div class="portfolio-card-year">2025</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&auto=format&fit=crop&q=80" alt="Carnegie Hill Apartment" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Carnegie Hill Apartment</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Transitional</div>
+              </div>
+              <div class="portfolio-card-year">2025</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&auto=format&fit=crop&q=80" alt="Carroll Gardens" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Carroll Gardens</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Traditional</div>
+              </div>
+              <div class="portfolio-card-year">2025</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=800&auto=format&fit=crop&q=80" alt="Upper East Side" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Upper East Side</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Traditional</div>
+              </div>
+              <div class="portfolio-card-year">2025</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=800&auto=format&fit=crop&q=80" alt="Riverside Drive" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Riverside Drive</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Contemporary</div>
+              </div>
+              <div class="portfolio-card-year">2024</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&auto=format&fit=crop&q=80" alt="O'Neil Residence" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">O'Neil Residence</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Transitional</div>
+              </div>
+              <div class="portfolio-card-year">2024</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&auto=format&fit=crop&q=80" alt="Upper East Side High Rise" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Upper East Side High Rise</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Contemporary</div>
+              </div>
+              <div class="portfolio-card-year">2024</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800&auto=format&fit=crop&q=80" alt="Pearce Residence" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Pearce Residence</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Scandinavian</div>
+              </div>
+              <div class="portfolio-card-year">2024</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=800&auto=format&fit=crop&q=80" alt="Howard Beach" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Howard Beach</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Traditional</div>
+              </div>
+              <div class="portfolio-card-year">2023</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1595526051245-4506e0005bd0?w=800&auto=format&fit=crop&q=80" alt="Central Park West" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Central Park West</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Modern</div>
+              </div>
+              <div class="portfolio-card-year">2023</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=800&auto=format&fit=crop&q=80" alt="Lexington Project" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Lexington Project</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Transitional</div>
+              </div>
+              <div class="portfolio-card-year">2022</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&auto=format&fit=crop&q=80" alt="Bowery Downtown Manhattan" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Bowery — Downtown Manhattan</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Transitional</div>
+              </div>
+              <div class="portfolio-card-year">2020</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Full-Home Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1556909211-36987daf7b4d?w=800&auto=format&fit=crop&q=80" alt="Lavin Residence" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Lavin Residence</div>
+                <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Contemporary</div>
+              </div>
+              <div class="portfolio-card-year">2020</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Kitchen Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=800&auto=format&fit=crop&q=80" alt="Lower Manhattan" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Lower Manhattan</div>
+                <div class="portfolio-card-meta">Kitchen Renovation &nbsp;·&nbsp; Contemporary</div>
+              </div>
+              <div class="portfolio-card-year">2019</div>
+            </div>
+          </a>
+
+          <a class="portfolio-card reveal" data-type="Kitchen Renovation" href="#">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1556909172-8c2f041fca1e?w=800&auto=format&fit=crop&q=80" alt="Boris Loft" loading="lazy"/>
+              <div class="portfolio-card-overlay"><span class="overlay-view">View Project</span></div>
+            </div>
+            <div class="portfolio-card-info">
+              <div>
+                <div class="portfolio-card-name">Boris Loft</div>
+                <div class="portfolio-card-meta">Kitchen Renovation &nbsp;·&nbsp; Traditional</div>
+              </div>
+              <div class="portfolio-card-year">2019</div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background:var(--bg-alt); padding-block:clamp(4rem,7vw,7rem); text-align:center;">
+      <div class="container">
+        <h2 class="t-headline reveal" style="max-width:520px; margin-inline:auto; margin-bottom:1.25rem">Start Your Project</h2>
+        <p class="reveal" style="color:var(--text-muted); font-size:.875rem; max-width:440px; margin-inline:auto; margin-bottom:2rem">
+          Ready to transform your home? Schedule a free consultation and let's discuss your vision.
+        </p>
+        <a href="index.html#contact" class="btn btn-fill reveal">Book a Free Consultation</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            <div class="nav-logo-text"><span>UNITED ELITE</span><span class="logo-sub">GROUP</span></div>
+          </div>
+          <p class="footer-tagline">New York City's premier luxury renovation contractor and construction manager since 2012.</p>
+          <div class="footer-social"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">Houzz</a></div>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <nav class="footer-nav">
+            <a href="about-us.html">About Us</a><a href="portfolio.html">Portfolio</a>
+            <a href="services.html">Services</a><a href="blog.html">Blog</a>
+            <a href="partnership.html">Partnership</a><a href="index.html#contact">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <nav class="footer-nav">
+            <a href="services.html">Full Gut Renovation</a><a href="services.html">Kitchen Renovation</a>
+            <a href="services.html">Bathroom Renovation</a><a href="services.html">Townhouse Renovation</a>
+            <a href="services.html">Basement Renovation</a><a href="services.html">Custom Millwork</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-contact">
+            <p><a href="tel:+17184391222">+1 (718) 439-1222</a></p>
+            <p>555 Madison Ave<br>New York, NY 10022</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 United Elite Group. All rights reserved.</p>
+        <p class="footer-copy">NYC General Contractor License #2005693</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
