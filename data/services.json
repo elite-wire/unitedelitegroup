@@ -1,0 +1,23 @@
+{
+  "construction": [
+    { "name": "Plumbing",           "desc": "Complete plumbing installation, repair, and replacement for residential properties." },
+    { "name": "Custom Millwork",    "desc": "Tailored woodwork, cabinetry, and built-ins crafted to your exact specifications." },
+    { "name": "Painting",           "desc": "Interior finish painting with premium paints and meticulous surface preparation." },
+    { "name": "Drywall & Plaster",  "desc": "Wall installation, restoration, and custom plaster detailing." },
+    { "name": "Electrical",         "desc": "Full electrical systems — panels, outlets, lighting circuits, and smart home integration." },
+    { "name": "Flooring",           "desc": "Installation and refinishing of hardwood, marble, tile, and specialty flooring." },
+    { "name": "Structural",         "desc": "Load-bearing modifications, beam work, and structural reinforcement." }
+  ],
+  "renovation": [
+    { "name": "Full Gut Renovation",   "desc": "Comprehensive top-to-bottom interior overhaul, from demolition through final finishes." },
+    { "name": "Kitchen Renovation",    "desc": "Custom kitchen redesign and construction with premium materials and appliances." },
+    { "name": "Bathroom Renovation",   "desc": "Spa-inspired bathroom transformations — wet rooms, steam showers, heated floors." },
+    { "name": "Full Townhouse",        "desc": "Multi-floor townhouse renovations managed as a single seamless project." },
+    { "name": "Basement Renovation",   "desc": "Below-grade space transformation: waterproofing, egress, and full fit-out." },
+    { "name": "Exterior Terrace",      "desc": "Rooftop and terrace design, waterproofing, decking, and landscape integration." }
+  ],
+  "design": [
+    { "name": "Project Planning",      "desc": "Comprehensive scope development, scheduling, and pre-construction coordination." },
+    { "name": "Design Consultation",   "desc": "Material selection, space planning, and aesthetic guidance with our senior design team." }
+  ]
+}

@@ -1,0 +1,10 @@
+[
+  { "name": "Tolib Mansurov",   "title": "Founder & CEO",          "img": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=80" },
+  { "name": "Nathan Ho",        "title": "Project Manager",        "img": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&auto=format&fit=crop&q=80" },
+  { "name": "Oybek Shakirov",   "title": "Chief Financial Officer","img": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80" },
+  { "name": "Diana Pivtorak",   "title": "Office Manager",         "img": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=80" },
+  { "name": "Salomon Danielov", "title": "Head of Sales",          "img": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80" },
+  { "name": "Margot Ellisen",   "title": "Senior Design Architect","img": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80" },
+  { "name": "Sloane Avery",     "title": "Land Use Attorney",      "img": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&auto=format&fit=crop&q=80" },
+  { "name": "Karim Solano",     "title": "Operations Manager",     "img": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80" }
+]

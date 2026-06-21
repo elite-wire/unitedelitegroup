@@ -1,0 +1,110 @@
+[
+  {
+    "id": "spa-bathroom-nyc",
+    "title": "Designing a Spa-Level Bathroom in a New York Apartment",
+    "date": "2025-05-06",
+    "dateDisplay": "May 06, 2025",
+    "category": "Bathroom Ideas",
+    "summary": "Transform your NYC apartment bathroom into a luxurious retreat using natural materials, statement fixtures, smart lighting, and calming accessories that feel tailored and serene.",
+    "img": "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "dob-process-guide",
+    "title": "Navigating the DOB Process: 5 Key Things You Need to Know",
+    "date": "2025-05-03",
+    "dateDisplay": "May 03, 2025",
+    "category": "Building Regulations & Engineering",
+    "summary": "Five essential aspects of NYC Department of Buildings approval — permits, licensed professionals, DOB NOW platform use, permit types, and getting inspections right the first time.",
+    "img": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "family-design-ideas",
+    "title": "Family Design: 5 Ideas for Homes with Children",
+    "date": "2025-05-01",
+    "dateDisplay": "May 01, 2025",
+    "category": "Interior Design Trends",
+    "summary": "Design strategies for family homes that balance style with practicality — flexible layouts, durable materials, natural accents, and hidden storage that serves both children and adults.",
+    "img": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "basement-renovation",
+    "title": "Below Ground, Above Expectations: Basement Renovations That Actually Feel Good",
+    "date": "2025-04-28",
+    "dateDisplay": "Apr 28, 2025",
+    "category": "Interior Design Trends",
+    "summary": "Basement transformation techniques covering waterproofing, climate control, egress, and design choices to create below-ground spaces that feel spacious, warm, and genuinely livable.",
+    "img": "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "pet-friendly-home",
+    "title": "For the Dogs (and Cats, and Rabbits): How to Create a Pet-Friendly Home",
+    "date": "2025-04-25",
+    "dateDisplay": "Apr 25, 2025",
+    "category": "Interior Design Trends",
+    "summary": "Durable materials, hidden pet zones, seamless flooring solutions, and thoughtful spatial planning that works beautifully for both four-legged residents and discerning homeowners.",
+    "img": "https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "perfect-living-room",
+    "title": "The Art of Hosting: The Essentials of a Perfect Living Room",
+    "date": "2025-04-24",
+    "dateDisplay": "Apr 24, 2025",
+    "category": "Cozy Corners",
+    "summary": "Architectural elements, the Golden Ratio in furniture arrangement, layered lighting plans, and curated textures that transform a living room into the ultimate gathering space.",
+    "img": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "sustainable-design",
+    "title": "5 Sustainable Design Ideas for Your Apartment",
+    "date": "2025-04-21",
+    "dateDisplay": "Apr 21, 2025",
+    "category": "Interior Design Trends",
+    "summary": "Eco-friendly materials, energy-efficient systems, vintage finds, and natural finishes that create sophisticated, environmentally conscious interiors without sacrificing luxury.",
+    "img": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "european-charm",
+    "title": "From Paris to Park Avenue: How to Bring European Charm Into Your Interior",
+    "date": "2025-04-14",
+    "dateDisplay": "Apr 14, 2025",
+    "category": "Architectural Styles & History",
+    "summary": "Incorporating effortless European charm through aged materials, warm color palettes, handcrafted details, and timeless proportions that give New York homes an old-world soul.",
+    "img": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "open-plan-living",
+    "title": "Open Plan Living: When to Break Down Walls (and When Not To)",
+    "date": "2025-04-07",
+    "dateDisplay": "Apr 07, 2025",
+    "category": "Building Regulations & Engineering",
+    "summary": "Structural vs. non-structural walls, DOB requirements for NYC apartments, and design strategies for creating open, light-filled spaces while preserving the building's integrity.",
+    "img": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "kitchen-materials",
+    "title": "The Material Edit: Choosing the Right Surfaces for Your Kitchen",
+    "date": "2025-03-28",
+    "dateDisplay": "Mar 28, 2025",
+    "category": "Kitchen Ideas",
+    "summary": "A deep dive into countertop and backsplash materials — marble, quartzite, porcelain slabs, and engineered stone — weighed by durability, maintenance, and aesthetic longevity.",
+    "img": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "lighting-design",
+    "title": "Lighting as Architecture: How Illumination Defines a Space",
+    "date": "2025-03-14",
+    "dateDisplay": "Mar 14, 2025",
+    "category": "Interior Design Trends",
+    "summary": "Layered lighting design — ambient, task, and accent — plus the case for architectural lighting, dimmer systems, and why lighting decisions should come before finishes.",
+    "img": "https://images.unsplash.com/photo-1561375996-8ad0b43a2b63?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "co-op-renovation-guide",
+    "title": "The Complete Guide to Renovating a NYC Co-op",
+    "date": "2025-03-05",
+    "dateDisplay": "Mar 05, 2025",
+    "category": "Building Regulations & Engineering",
+    "summary": "Board alteration agreements, house rules, work hours, insurance requirements, and how to structure your renovation to sail through co-op approval without costly surprises.",
+    "img": "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&auto=format&fit=crop&q=80"
+  }
+]

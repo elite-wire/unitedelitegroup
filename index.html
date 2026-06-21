@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>United Elite Group | NYC Luxury Renovation Contractor</title>
+  <meta name="description" content="New York City's premier luxury renovation contractor and construction manager. Serving condos, co-ops, and townhomes since 2012." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    /* ---- Home-specific styles ---- */
+
+    /* Hero */
+    .hero {
+      position: relative;
+      margin-top: var(--nav-h);
+      height: calc(100svh - var(--nav-h));
+      min-height: 520px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero-img {
+      height: 100%;
+      overflow: hidden;
+    }
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.08) 0%, rgba(0,0,0,.22) 100%);
+      pointer-events: none;
+    }
+
+    /* Award badges */
+    .hero-awards {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      z-index: 10;
+    }
+    .hero-award-badge {
+      width: 62px;
+      height: 62px;
+      background: rgba(255,255,255,.92);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: .35rem .4rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    }
+    .badge-brand {
+      font-family: var(--sans);
+      font-size: .38rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #B03A2E;
+    }
+    .badge-service {
+      font-family: var(--sans);
+      font-size: .42rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #B03A2E;
+      line-height: 1.2;
+      margin-top: 1px;
+    }
+    .badge-best {
+      font-family: var(--serif);
+      font-size: .75rem;
+      font-weight: 600;
+      color: #B03A2E;
+      line-height: 1;
+    }
+    .badge-of {
+      font-family: var(--sans);
+      font-size: .34rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #B03A2E;
+      line-height: 1;
+    }
+    .badge-houzz {
+      font-family: var(--sans);
+      font-size: .52rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: #73BA9B;
+      text-transform: lowercase;
+      margin-top: 2px;
+    }
+    .badge-year {
+      font-family: var(--sans);
+      font-size: .68rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    /* CTA overlay */
+    .hero-cta {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+    }
+    .hero-cta .btn {
+      background: rgba(245,241,235,.9);
+      border-color: rgba(245,241,235,.9);
+      color: var(--text);
+      padding: 1rem 2.25rem;
+      font-size: .625rem;
+      letter-spacing: .22em;
+      backdrop-filter: blur(4px);
+      transition: background var(--fast), color var(--fast);
+    }
+    .hero-cta .btn:hover {
+      background: var(--text);
+      color: var(--white);
+      border-color: var(--text);
+    }
+
+    /* Bottom links */
+    .hero-bottom {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 0;
+      right: 0;
+      padding-inline: var(--gutter);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 5;
+    }
+    .hero-bottom a {
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: .625rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255,255,255,.7);
+      padding-bottom: 1px;
+      transition: opacity var(--fast);
+    }
+    .hero-bottom a:hover { opacity: .65; }
+
+    /* Tagline strip */
+    .tagline {
+      padding: clamp(3rem, 6vw, 6rem) var(--gutter);
+      text-align: center;
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .tagline h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 6.5vw, 6.5rem);
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .tagline p {
+      font-family: var(--sans);
+      font-size: .8125rem;
+      color: var(--text-muted);
+      letter-spacing: .08em;
+    }
+
+    /* About */
+    .about-section { padding-block: clamp(4rem, 8vw, 8rem); }
+    .about-headline-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+    .about-vision {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 4rem);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      line-height: 1;
+      align-self: flex-start;
+    }
+    .about-execution {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 4rem);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      line-height: 1;
+      align-self: flex-end;
+      text-align: right;
+    }
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 6rem);
+      align-items: start;
+    }
+    .about-text p {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 260px 200px;
+      gap: .5rem;
+    }
+    .about-img-main {
+      grid-column: 1 / -1;
+      overflow: hidden;
+    }
+    .about-img-sm { overflow: hidden; }
+    .about-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Services */
+    .services-section { padding-block: clamp(4rem, 8vw, 8rem); background: var(--bg); }
+    .services-intro {
+      max-width: 520px;
+      margin-bottom: clamp(3rem, 5vw, 5rem);
+    }
+    .services-intro p { font-size: .875rem; color: var(--text-muted); line-height: 1.85; margin-top: 1.25rem; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .service-card { display: flex; flex-direction: column; }
+    .service-card-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .service-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .7s var(--ease);
+    }
+    .service-card:hover .service-card-img img { transform: scale(1.04); }
+    .service-card-tag {
+      font-family: var(--sans);
+      font-size: .5625rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .5rem;
+    }
+    .service-card h3 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      margin-bottom: .75rem;
+    }
+    .service-card p { font-size: .8125rem; color: var(--text-muted); line-height: 1.75; }
+
+    /* Portfolio */
+    .portfolio-section { padding-block: clamp(4rem, 8vw, 8rem); }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .portfolio-card {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .portfolio-card-img {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: .85rem;
+    }
+    .portfolio-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .7s var(--ease);
+    }
+    .portfolio-card:hover .portfolio-card-img img { transform: scale(1.05); }
+    .portfolio-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity var(--med);
+    }
+    .portfolio-card:hover .portfolio-card-overlay { opacity: 1; }
+    .portfolio-card-name {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: .02em;
+      margin-bottom: .2rem;
+    }
+    .portfolio-card-meta {
+      font-family: var(--sans);
+      font-size: .5625rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .portfolio-cta {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    /* Stats strip */
+    .stats-strip {
+      background: var(--text);
+      color: var(--white);
+      padding-block: clamp(3rem, 5vw, 5rem);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .stat-label {
+      font-family: var(--sans);
+      font-size: .625rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+
+    /* Process */
+    .process-section { padding-block: clamp(4rem, 8vw, 8rem); }
+
+    /* Reviews */
+    .reviews-section { padding-block: clamp(4rem, 8vw, 8rem); background: var(--bg-alt); }
+    .reviews-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: center;
+    }
+    .reviews-left h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      text-transform: uppercase;
+      line-height: 1;
+      letter-spacing: .02em;
+      margin-bottom: 1.5rem;
+    }
+    .reviews-left p { font-size: .875rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
+    .review-rating { display: flex; align-items: center; gap: .25rem; margin-bottom: .35rem; }
+    .review-star { color: var(--accent); font-size: 1rem; }
+    .review-platform { font-size: .625rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* Awards */
+    .awards-section { padding-block: clamp(3rem, 6vw, 6rem); }
+    .awards-inner {
+      display: flex;
+      align-items: center;
+      gap: clamp(2rem, 4vw, 5rem);
+      flex-wrap: wrap;
+    }
+    .awards-text { flex: 1; min-width: 240px; }
+    .awards-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.8rem);
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .awards-text p { font-size: .875rem; color: var(--text-muted); line-height: 1.8; }
+    .awards-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      align-items: center;
+    }
+    .award-pill {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: .75rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 80px;
+    }
+    .award-pill .pill-year {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 500;
+      line-height: 1;
+    }
+    .award-pill .pill-text {
+      font-family: var(--sans);
+      font-size: .45rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: .25rem;
+      text-align: center;
+    }
+
+    /* FAQ */
+    .faq-section { padding-block: clamp(4rem, 8vw, 8rem); }
+    .faq-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: start;
+    }
+    .faq-title h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .faq-title p { font-size: .875rem; color: var(--text-muted); line-height: 1.8; }
+
+    /* Contact */
+    .contact-section { padding-block: clamp(4rem, 8vw, 8rem); background: var(--bg-alt); }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: start;
+    }
+    .contact-info h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .contact-info p { font-size: .875rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+    }
+    .contact-detail-label {
+      font-family: var(--sans);
+      font-size: .5625rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .contact-detail-value {
+      font-size: .875rem;
+      color: var(--text);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-img:last-child { display: none; }
+      .about-content { grid-template-columns: 1fr; }
+      .about-images { grid-template-rows: 220px 160px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-inner { grid-template-columns: 1fr; }
+      .faq-inner { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .awards-inner { flex-direction: column; align-items: flex-start; }
+      .stats-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 480px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======== HEADER ======== -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+          <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="nav-logo-text">
+          <span>UNITED ELITE</span>
+          <span class="logo-sub">GROUP</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="about-us.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="partnership.html">Partnership</a>
+      </nav>
+
+      <a href="#contact" class="nav-contact">
+        <span class="nav-dot"></span>
+        Contact Us
+      </a>
+
+      <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <nav class="nav-mobile-drawer" aria-label="Mobile navigation">
+    <a href="about-us.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a>
+    <a href="blog.html">Blog</a>
+    <a href="partnership.html">Partnership</a>
+    <a href="#contact">Contact Us</a>
+  </nav>
+
+  <main>
+
+    <!-- ======== HERO ======== -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-img">
+        <img
+          src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&auto=format&fit=crop&q=80"
+          alt="Luxury interior — warm wood study with leather chair"
+          loading="eager"
+        />
+      </div>
+      <div class="hero-img">
+        <img
+          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&auto=format&fit=crop&q=80"
+          alt="Luxury interior — dark contemporary living room"
+          loading="eager"
+        />
+      </div>
+      <div class="hero-overlay"></div>
+
+      <!-- Award badges -->
+      <div class="hero-awards" aria-label="Houzz Awards">
+        <div class="hero-award-badge">
+          <span class="badge-best">Best</span>
+          <span class="badge-of">of</span>
+          <span class="badge-houzz">houzz</span>
+          <span class="badge-year">2022</span>
+          <span class="badge-service">Service</span>
+        </div>
+        <div class="hero-award-badge">
+          <span class="badge-best">Best</span>
+          <span class="badge-of">of</span>
+          <span class="badge-houzz">houzz</span>
+          <span class="badge-year">2021</span>
+          <span class="badge-service">Service</span>
+        </div>
+        <div class="hero-award-badge">
+          <span class="badge-best">Best</span>
+          <span class="badge-of">of</span>
+          <span class="badge-houzz">houzz</span>
+          <span class="badge-year">2020</span>
+          <span class="badge-service">Service</span>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#contact" class="btn">Free Consultation</a>
+      </div>
+
+      <div class="hero-bottom">
+        <a href="portfolio.html">View Projects</a>
+        <a href="#contact">Book a Call</a>
+      </div>
+    </section>
+
+    <!-- ======== TAGLINE ======== -->
+    <div class="tagline">
+      <h1>Redefining Your Home Luxury</h1>
+      <p>New York City Luxury Renovation Contractor and Construction Manager</p>
+    </div>
+
+    <!-- ======== ABOUT ======== -->
+    <section class="about-section section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">About Us</span>
+          <span class="t-label" style="color:var(--border)">01</span>
+        </div>
+
+        <div class="about-headline-block reveal">
+          <div class="about-vision">Your Vision —</div>
+          <div class="about-execution">Our Finest<br>Execution</div>
+        </div>
+
+        <div class="about-content">
+          <div class="about-text reveal">
+            <p>
+              Founded in 2012, United Elite Group is a New York City contractor and construction manager
+              that has built an unmatched reputation for turning our client's luxury condo, co-op, and
+              townhome renovation visions into reality.
+            </p>
+            <p>
+              Whether you're a home-owner, architect, or interior designer — we're confident we'll exceed
+              your expectations as a general contracting partner every step of the way. We pride ourselves
+              on bespoke service, meticulous craftsmanship, and open communication from the first
+              consultation through the final walkthrough.
+            </p>
+            <p>
+              Our team of 42 high-end specialists brings deep expertise in all trades — from custom
+              millwork and plasterwork to complex structural modifications — ensuring every detail of
+              your renovation is executed to the highest standard.
+            </p>
+            <div style="margin-top:2rem">
+              <a href="about-us.html" class="btn">Learn More About Us</a>
+            </div>
+          </div>
+
+          <div class="about-images reveal">
+            <div class="about-img-main">
+              <img
+                src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=900&auto=format&fit=crop&q=80"
+                alt="Luxury renovated living room"
+                loading="lazy"
+              />
+            </div>
+            <div class="about-img-sm">
+              <img
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500&auto=format&fit=crop&q=80"
+                alt="Refined interior detail"
+                loading="lazy"
+              />
+            </div>
+            <div class="about-img-sm">
+              <img
+                src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=500&auto=format&fit=crop&q=80"
+                alt="Custom kitchen renovation"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== STATS ======== -->
+    <div class="stats-strip">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="reveal">
+            <div class="stat-num">150<span style="font-size:.6em">+</span></div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="reveal">
+            <div class="stat-num">13</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+          <div class="reveal">
+            <div class="stat-num">42</div>
+            <div class="stat-label">High-End Specialists</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======== SERVICES ======== -->
+    <section class="services-section section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Services</span>
+          <span class="t-label" style="color:var(--border)">02</span>
+        </div>
+
+        <div class="services-intro reveal">
+          <h2 class="t-headline">The perfect setting for your everyday life</h2>
+          <p>
+            From full gut renovations to targeted kitchen and bathroom redesigns, we deliver
+            luxury results at every scale — always on schedule, always within budget.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <div class="service-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1449844908441-8829872d2607?w=800&auto=format&fit=crop&q=80"
+                alt="Townhouse renovation"
+                loading="lazy"
+              />
+            </div>
+            <span class="service-card-tag">Renovation</span>
+            <h3>Townhouse Renovations</h3>
+            <p>Multi-floor townhouse transformations managed as a single, seamlessly coordinated project from foundation to rooftop.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80"
+                alt="Kitchen renovation"
+                loading="lazy"
+              />
+            </div>
+            <span class="service-card-tag">Renovation</span>
+            <h3>Kitchen Renovations</h3>
+            <p>Custom kitchen design and construction — from bespoke cabinetry and stone countertops to premium appliances and chef-level layouts.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card-img">
+              <img
+                src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&auto=format&fit=crop&q=80"
+                alt="Bathroom renovation"
+                loading="lazy"
+              />
+            </div>
+            <span class="service-card-tag">Renovation</span>
+            <h3>Bathroom Renovations</h3>
+            <p>Spa-inspired bathroom transformations — heated floors, wet rooms, steam enclosures, and hand-selected stone and tile.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:2.5rem; text-align:center">
+          <a href="services.html" class="btn">View All Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== PORTFOLIO ======== -->
+    <section class="portfolio-section section" id="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Selected Projects</span>
+          <span class="t-label" style="color:var(--border)">03</span>
+        </div>
+
+        <div class="portfolio-grid">
+          <a href="portfolio.html" class="portfolio-card reveal">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop&q=80" alt="Avenue B" loading="lazy"/>
+              <div class="portfolio-card-overlay"></div>
+            </div>
+            <div class="portfolio-card-name">Avenue B</div>
+            <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Contemporary &nbsp;·&nbsp; 2025</div>
+          </a>
+          <a href="portfolio.html" class="portfolio-card reveal">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80" alt="Heller Loft" loading="lazy"/>
+              <div class="portfolio-card-overlay"></div>
+            </div>
+            <div class="portfolio-card-name">Heller Loft</div>
+            <div class="portfolio-card-meta">Kitchen Renovation &nbsp;·&nbsp; Modern &nbsp;·&nbsp; 2025</div>
+          </a>
+          <a href="portfolio.html" class="portfolio-card reveal">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&auto=format&fit=crop&q=80" alt="West Chelsea Residence" loading="lazy"/>
+              <div class="portfolio-card-overlay"></div>
+            </div>
+            <div class="portfolio-card-name">West Chelsea Residence</div>
+            <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Contemporary &nbsp;·&nbsp; 2022</div>
+          </a>
+          <a href="portfolio.html" class="portfolio-card reveal">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&auto=format&fit=crop&q=80" alt="Tribeca Apartment" loading="lazy"/>
+              <div class="portfolio-card-overlay"></div>
+            </div>
+            <div class="portfolio-card-name">Tribeca Apartment</div>
+            <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Contemporary &nbsp;·&nbsp; 2024</div>
+          </a>
+          <a href="portfolio.html" class="portfolio-card reveal">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&auto=format&fit=crop&q=80" alt="Carnegie Hill Apartment" loading="lazy"/>
+              <div class="portfolio-card-overlay"></div>
+            </div>
+            <div class="portfolio-card-name">Carnegie Hill Apartment</div>
+            <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Transitional &nbsp;·&nbsp; 2025</div>
+          </a>
+          <a href="portfolio.html" class="portfolio-card reveal">
+            <div class="portfolio-card-img">
+              <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800&auto=format&fit=crop&q=80" alt="Pearce Residence" loading="lazy"/>
+              <div class="portfolio-card-overlay"></div>
+            </div>
+            <div class="portfolio-card-name">Pearce Residence</div>
+            <div class="portfolio-card-meta">Full-Home Renovation &nbsp;·&nbsp; Scandinavian &nbsp;·&nbsp; 2024</div>
+          </a>
+        </div>
+
+        <div class="portfolio-cta">
+          <a href="portfolio.html" class="btn">View All Projects</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== PROCESS ======== -->
+    <section class="process-section section" id="process">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Our Process</span>
+          <span class="t-label" style="color:var(--border)">04</span>
+        </div>
+        <div class="process-grid">
+          <div class="process-step reveal">
+            <div class="process-num">01</div>
+            <h3>Planning &amp; Estimates</h3>
+            <p>We collaborate with your architect, assess the space structurally, and create a detailed scope, schedule, and budget before a single nail is driven.</p>
+          </div>
+          <div class="process-step reveal">
+            <div class="process-num">02</div>
+            <h3>Construction Process</h3>
+            <p>Our seasoned team coordinates every trade — plumbing, electrical, millwork, tile — with daily site management and regular client updates throughout.</p>
+          </div>
+          <div class="process-step reveal">
+            <div class="process-num">03</div>
+            <h3>Protocol &amp; Safety</h3>
+            <p>We handle all DOB permits, building management compliance, and work-hour protocols so your building relationship stays intact and the site remains safe.</p>
+          </div>
+          <div class="process-step reveal">
+            <div class="process-num">04</div>
+            <h3>Service &amp; Guarantee</h3>
+            <p>Every project ends with a meticulous walkthrough, punch-list resolution, and a written warranty covering our workmanship for lasting peace of mind.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== REVIEWS ======== -->
+    <section class="reviews-section section" id="reviews">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Client Reviews</span>
+          <span class="t-label" style="color:var(--text-muted)">05</span>
+        </div>
+        <div class="reviews-inner">
+          <div class="reviews-left reveal">
+            <h2>What Our Clients Say</h2>
+            <p>Over 13 years and 150+ completed projects, our clients' satisfaction is the measure we're proudest of.</p>
+            <div class="review-rating">
+              <span class="review-star">★</span>
+              <span class="review-star">★</span>
+              <span class="review-star">★</span>
+              <span class="review-star">★</span>
+              <span class="review-star">★</span>
+            </div>
+            <div class="review-platform">5.0 · Houzz &amp; Google Reviews</div>
+          </div>
+
+          <div class="testimonial-track reveal">
+            <div class="testimonial-slide active">
+              <p class="testimonial-text">"United Elite Group transformed our Brooklyn brownstone into the home we always envisioned. Their attention to detail, clear communication, and craftsmanship exceeded every expectation."</p>
+              <div class="testimonial-author">Sarah &amp; James M.</div>
+              <div class="testimonial-meta">Homeowners, Carroll Gardens · 2025</div>
+            </div>
+            <div class="testimonial-slide">
+              <p class="testimonial-text">"As an interior designer, I rely on contractors who can execute complex designs flawlessly. United Elite Group is that rare partner — they understand the nuance behind every specification."</p>
+              <div class="testimonial-author">Alexandra Chen</div>
+              <div class="testimonial-meta">Interior Designer · 2024</div>
+            </div>
+            <div class="testimonial-slide">
+              <p class="testimonial-text">"Our Upper East Side renovation was completed on schedule and within budget. The open communication throughout was exceptional — we always knew exactly where the project stood."</p>
+              <div class="testimonial-author">Robert T.</div>
+              <div class="testimonial-meta">Homeowner, Upper East Side · 2025</div>
+            </div>
+            <div class="testimonial-slide">
+              <p class="testimonial-text">"I've worked with many contractors in NYC over 20 years as an architect. United Elite Group stands apart for their professionalism, landmark building expertise, and exceptional finish quality."</p>
+              <div class="testimonial-author">Michael Rothstein, AIA</div>
+              <div class="testimonial-meta">Architect · 2024</div>
+            </div>
+            <div class="testimonial-slide">
+              <p class="testimonial-text">"They navigated all the DOB permits and co-op board approvals seamlessly. We barely had to lift a finger. The result is a complete transformation of our West Chelsea apartment that we absolutely love."</p>
+              <div class="testimonial-author">Jennifer &amp; Paul K.</div>
+              <div class="testimonial-meta">Homeowners, West Chelsea · 2022</div>
+            </div>
+
+            <div class="testimonial-controls">
+              <button class="testimonial-prev" aria-label="Previous review">&#8592;</button>
+              <div class="testimonial-dots">
+                <button class="testimonial-dot active" aria-label="Review 1"></button>
+                <button class="testimonial-dot" aria-label="Review 2"></button>
+                <button class="testimonial-dot" aria-label="Review 3"></button>
+                <button class="testimonial-dot" aria-label="Review 4"></button>
+                <button class="testimonial-dot" aria-label="Review 5"></button>
+              </div>
+              <button class="testimonial-next" aria-label="Next review">&#8594;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== AWARDS ======== -->
+    <section class="awards-section section-sm">
+      <div class="container">
+        <div class="awards-inner">
+          <div class="awards-text reveal">
+            <h2>Industry Recognition</h2>
+            <p>Multiple Best of Houzz awards for Service Excellence, alongside membership in the CRAN Network and other premier industry affiliations.</p>
+          </div>
+          <div class="awards-badges reveal">
+            <div class="award-pill"><span class="pill-year">2022</span><span class="pill-text">Best of Houzz<br>Service</span></div>
+            <div class="award-pill"><span class="pill-year">2021</span><span class="pill-text">Best of Houzz<br>Service</span></div>
+            <div class="award-pill"><span class="pill-year">2020</span><span class="pill-text">Best of Houzz<br>Service</span></div>
+            <div class="award-pill"><span class="pill-year">2019</span><span class="pill-text">Best of Houzz<br>Service</span></div>
+            <div class="award-pill"><span class="pill-year">2018</span><span class="pill-text">Best of Houzz<br>Service</span></div>
+            <div class="award-pill"><span class="pill-year">2016</span><span class="pill-text">Best of Houzz<br>Design</span></div>
+            <div class="award-pill"><span class="pill-year">2014</span><span class="pill-text">Best of Houzz<br>Design</span></div>
+            <div class="award-pill" style="background:var(--text); color:var(--white); border-color:var(--text)">
+              <span class="pill-year" style="font-size:1rem; letter-spacing:.05em">CRAN</span>
+              <span class="pill-text" style="color:rgba(255,255,255,.6)">Network<br>Member</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== FAQ ======== -->
+    <section class="faq-section section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">FAQ</span>
+          <span class="t-label" style="color:var(--border)">06</span>
+        </div>
+        <div class="faq-inner">
+          <div class="faq-title reveal">
+            <h2>Common Questions</h2>
+            <p>Everything you need to know before starting your renovation journey with us.</p>
+            <div style="margin-top:2rem">
+              <a href="#contact" class="btn">Get in Touch</a>
+            </div>
+          </div>
+
+          <div class="faq-list reveal">
+            <div class="faq-item open">
+              <button class="faq-question">
+                What types of projects do you specialize in?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>We specialize in luxury residential renovations across New York City — including full gut renovations, kitchen and bathroom remodels, full townhouse projects, basement conversions, and exterior terrace design. We work in condos, co-ops, and townhomes throughout Manhattan, Brooklyn, and Queens.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                How do you ensure quality throughout the construction process?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>Quality is embedded at every stage. We use only licensed, vetted tradespeople, conduct regular site inspections, and have a dedicated project manager on every job. We also perform pre-close quality walkthroughs before any trade covers another trade's work.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                How do you handle permits and building approvals in NYC?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>We handle all DOB filings, co-op alteration agreement compliance, and condominium board approvals in-house. Our team is deeply familiar with NYC's permitting process, including landmark requirements and HPD regulations, so your project stays on track without bureaucratic delays.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                What is your typical project timeline?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>Timelines vary by scope. A bathroom renovation typically runs 4–6 weeks; a kitchen 6–10 weeks; a full gut renovation 4–7 months. We provide a detailed project schedule at the start of every engagement and update it weekly so you always know where things stand.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Do you work with interior designers and architects?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>Absolutely — in fact, we actively partner with architects and designers as the execution arm of their team. We're fluent in design drawings and specifications, experienced at sourcing custom materials, and committed to delivering the design vision exactly as intended.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Do you offer sustainability or eco-friendly options?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>Yes. We offer low-VOC finishes, sustainable material sourcing, energy-efficient systems (HVAC, lighting, insulation), and responsible waste management on every project. Our team can guide you through green building options that align with both your aesthetic and environmental goals.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                What does the free consultation include?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>Our free consultation — available in-home or virtually — covers a walkthrough of your space, discussion of your vision and goals, preliminary scope assessment, and a high-level budget range. It's a no-obligation conversation to ensure we're the right fit before any commitment is made.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Is there a warranty on your work?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>Yes. We provide a written workmanship warranty covering all labor performed by our team. Manufacturer warranties are also passed through to you on all materials and fixtures. Our service team remains available post-completion for any questions or follow-up needs.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== CONTACT ======== -->
+    <section class="contact-section section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="t-label">Reach Out</span>
+        </div>
+        <div class="contact-inner">
+          <div class="contact-info reveal">
+            <h2>Get a Free Consultation</h2>
+            <p>Ready to bring your renovation vision to life? Get in touch — we'll schedule a no-obligation consultation at your home or virtually, at your convenience.</p>
+            <div class="contact-details">
+              <div class="contact-detail">
+                <span class="contact-detail-label">Phone</span>
+                <a href="tel:+17184391222" class="contact-detail-value">+1 (718) 439-1222</a>
+              </div>
+              <div class="contact-detail">
+                <span class="contact-detail-label">Address</span>
+                <span class="contact-detail-value">555 Madison Ave<br>New York, NY 10022</span>
+              </div>
+              <div class="contact-detail">
+                <span class="contact-detail-label">Hours</span>
+                <span class="contact-detail-value">Mon – Fri, 9am – 6pm</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="reveal" action="#" method="post" novalidate>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required />
+              </div>
+              <div class="form-field">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 (___) ___-____" />
+              </div>
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required />
+              </div>
+              <div class="form-field">
+                <label for="project-type">Project Type</label>
+                <select id="project-type" name="project-type">
+                  <option value="">Select a project type</option>
+                  <option>New Construction</option>
+                  <option>Full-Home Renovation</option>
+                  <option>Kitchen Renovation</option>
+                  <option>Bathroom Renovation</option>
+                  <option>Townhouse Renovation</option>
+                  <option>Basement Renovation</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-field span-2">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us about your project…"></textarea>
+              </div>
+              <div class="form-field span-2">
+                <button type="submit" class="btn btn-fill">Make an Appointment</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <svg viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="50" height="42" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="9" y1="1" x2="9" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="1" x2="43" y2="43" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="10" x2="9" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="10" x2="51" y2="10" stroke="currentColor" stroke-width="1"/>
+              <line x1="1" y1="34" x2="9" y2="34" stroke="currentColor" stroke-width="1"/>
+              <line x1="43" y1="34" x2="51" y2="34" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            <div class="nav-logo-text">
+              <span>UNITED ELITE</span>
+              <span class="logo-sub">GROUP</span>
+            </div>
+          </div>
+          <p class="footer-tagline">New York City's premier luxury renovation contractor and construction manager since 2012.</p>
+          <div class="footer-social">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Houzz</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <nav class="footer-nav">
+            <a href="about-us.html">About Us</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="services.html">Services</a>
+            <a href="blog.html">Blog</a>
+            <a href="partnership.html">Partnership</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Services</div>
+          <nav class="footer-nav">
+            <a href="services.html">Full Gut Renovation</a>
+            <a href="services.html">Kitchen Renovation</a>
+            <a href="services.html">Bathroom Renovation</a>
+            <a href="services.html">Townhouse Renovation</a>
+            <a href="services.html">Basement Renovation</a>
+            <a href="services.html">Custom Millwork</a>
+          </nav>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-contact">
+            <p><a href="tel:+17184391222">+1 (718) 439-1222</a></p>
+            <p>555 Madison Ave<br>New York, NY 10022</p>
+            <p style="margin-top:.75rem"><a href="#contact" class="btn btn-white" style="font-size:.5625rem; padding:.65rem 1.25rem">Free Consultation</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 United Elite Group. All rights reserved.</p>
+        <p class="footer-copy">NYC General Contractor License #2005693</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
